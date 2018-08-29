@@ -1,5 +1,5 @@
 
-import { LOADING, SET_CURRENT_USER } from './types'
+import { LOADING, SET_CURRENT_USER, CREATE_USER, GET_ALL_CATEGORIES } from './types'
 
 const ROOT_URL = "http://127.0.0.1:3001"
 
@@ -28,6 +28,25 @@ function setUser(json, dispatch){
         alert("Wrong username/password")
     }
 } 
+
+
+export const createUser= (submitData) => (dispatch) => {
+    dispatch({type: LOADING});
+
+
+} 
+
+
+
+//fetch catagories
+export const getCategories = () => dispatch => {
+    dispatch({type: LOADING});
+   return fetch(ROOT_URL + `/categories` )
+  .then(r  => r.json())
+  .then(json => dispatch({type: GET_ALL_CATEGORIES, payload: json}))
+}
+
+
 
 
 

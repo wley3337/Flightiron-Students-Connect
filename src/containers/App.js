@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import * as actions from '../redux/actions'
-import LoginForm from './LoginForm';
+// import { connect } from 'react-redux'
+// import * as actions from '../redux/actions'
+import LoginContainer from './LoginContainer';
+import ViewContainer from './ViewContainer';
+import SelectionContainer from './SelectionContainer'
+import LoginForm from '../components/LoginForm'
+import CreateUserForm from '../components/CreateUserForm'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
-  state = {
-    username: "",
-    password: "",
-    user: null
-  }
-  onChange =(e) =>{
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
-  onSubmit= (e) =>{
-    e.preventDefault()
-    this.props.userLogin(this.state.username, this.state.password)
-  }
+ 
 
   render() {
     return (
       <div>
-        <LoginForm />
-        
+        <Route exact path="/" component={LoginContainer}/>
+        <Route exact path={`/login`} component={  LoginForm } />
+        <Route exact path={`/create-user`} component={  CreateUserForm } />
+        <Route exact path="/my-page" component={ViewContainer}/>
+        <Route exact path="/my-page" component={SelectionContainer}/>
       </div>
     );
   }
