@@ -4,57 +4,79 @@ import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 
 
-const options = [
-    { key: 'angular', text: 'Angular', value: 'angular' },
-    { key: 'css', text: 'CSS', value: 'css' },
-    { key: 'design', text: 'Graphic Design', value: 'design' },
-    { key: 'ember', text: 'Ember', value: 'ember' },
-    { key: 'html', text: 'HTML', value: 'html' },
-    { key: 'ia', text: 'Information Architecture', value: 'ia' },
-    { key: 'javascript', text: 'Javascript', value: 'javascript' },
-    { key: 'mech', text: 'Mechanical Engineering', value: 'mech' },
-    { key: 'meteor', text: 'Meteor', value: 'meteor' },
-    { key: 'node', text: 'NodeJS', value: 'node' },
-    { key: 'plumbing', text: 'Plumbing', value: 'plumbing' },
-    { key: 'python', text: 'Python', value: 'python' },
-    { key: 'rails', text: 'Rails', value: 'rails' },
-    { key: 'react', text: 'React', value: 'react' },
-    { key: 'repair', text: 'Kitchen Repair', value: 'repair' },
-    { key: 'ruby', text: 'Ruby', value: 'ruby' },
-    { key: 'ui', text: 'UI Design', value: 'ui' },
-    { key: 'ux', text: 'User Experience', value: 'ux' },
-  ]
+
 
 class ViewContainer extends React.Component{
     state = {
-        content: ""
+        content: "",
+        newTopic:"",
+        dropDownValueArray: []
     }
 
 
     handleOnChange= (e) =>{
         this.setState({
-            content: e.target.value
+            [e.target.name]: e.target.value
+        })
+    }
+    handleDropDownSelect = (e,value) => {
+        this.setState({
+            dropDownValueArray: value.value
         })
     }
 
+    componentDidMount(){
+        this.props.getCategories()
+    }
+
+    handleDelete = () =>{
+        this.setState({
+            content: "",
+            newTopic:"",
+            dropDownValueArray: []
+        })
+        this.dipslayDropDown()
+    }
+
+    handleSave = () =>{
+        const categoryArry = this.state.dropDownValueArray.map(index => this.props.categories.find(cat => cat.id === index))
+        
+        this.props.updateUser(this.state, categoryArry)
+    }
+
+    dipslayDropDown(){
+    const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
+    return <Dropdown 
+                    placeholder='Categories' 
+                    fluid 
+                    multiple
+                    search 
+                    selection 
+                    options= {optionsArray}
+                    value={this.state.dropDownValueArray}
+                    onChange={(e,value) => this.handleDropDownSelect(e,value)}
+                />
+    }
+   
+
    render(){ 
-       console.log(this.props)
-   return(
-   <div>
-        ViewContainer
-        <Dropdown placeholder='Skills' fluid multiple selection options={options} />
-        <button name="delete">Delete</button>
-        <button name="save">Save</button>
-            
-        <textarea name="content" value={this.state.content} onChange={this.handleOnChange}/>
-            
-   </div>
-   )}
-}
+        return(
+            <div>
+                    {this.props.categories.length > 0 ? this.dipslayDropDown() : null}
+                    <input type="text" name="newTopic" value={this.state.newTopic} placeholder="New Topic" onChange={this.handleOnChange}/>
+                    <button name="delete" onClick={this.handleDelete}>Delete</button>
+                    <button name="save"onClick={this.handleSave}>Save</button>
+                    <textarea name="content" value={this.state.content} onChange={this.handleOnChange}/>
+                        
+            </div>
+        )}
+    }
 
 const mapStateToProps = (state) => {
-   return {categories: state.categories,
-    notes: state.notes}
+   return {
+       categories: state.categories,
+       notes: state.notes
+    }
 }
 
 export default connect(mapStateToProps, actions)(ViewContainer)

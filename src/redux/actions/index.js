@@ -1,5 +1,5 @@
 
-import { LOADING, SET_CURRENT_USER, CREATE_USER, GET_ALL_CATEGORIES } from './types'
+import { LOADING, SET_CURRENT_USER, CREATE_USER, GET_ALL_CATEGORIES, UPDATE_USER } from './types'
 
 const ROOT_URL = "http://127.0.0.1:3001"
 
@@ -33,9 +33,28 @@ function setUser(json, dispatch){
 export const createUser= (submitData) => (dispatch) => {
     dispatch({type: LOADING});
 
-
 } 
 
+//update user
+export const updateUser = (data, categoryArray) => (dispatch) => {
+    dispatch({type: LOADING});
+    console.log("updateUser", data, categoryArray)
+    const noteObj = data.content;
+    const existingCategory = categoryArray 
+    const newCategory = data.newTopic
+
+    fetch(ROOT_URL, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Token ${localStorage.getItem("token")}`
+            },
+        body: JSON.stringify({user: {note: {noteObj: noteObj, catagories: existingCategory, newCategory: newCategory}}})
+    })
+    .then(r => r.json())
+    .then(userObj => this.setState({user: userObj}))
+}
 
 
 //fetch catagories
