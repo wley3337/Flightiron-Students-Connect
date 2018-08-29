@@ -1,11 +1,13 @@
 
-import { LOADING, SET_CURRENT_USER} from './types'
+import { LOADING, SET_CURRENT_USER } from './types'
+
+const ROOT_URL = "http://127.0.0.1:3001"
 
 
-
+//fetch user token from login from backend
 export const userLogin = (username, password) => dispatch => {
     dispatch({type: LOADING});
-   return fetch(`http://127.0.0.1:3001/users/login`, {
+   return fetch(ROOT_URL + `/users/login`, {
       method: "POST",
       headers: {
           "Content-Type": "application/json; charset=utf-8",
@@ -17,9 +19,14 @@ export const userLogin = (username, password) => dispatch => {
   .then(json => setUser(json, dispatch))
 }
 
+//helper function that sets the user object in store and in localStorage
 function setUser(json, dispatch){
+    if (json["success"]){
     localStorage.setItem('token', `${json["token"]}`);
     dispatch({type: SET_CURRENT_USER, payload: json["userObj"]})
+    }else{
+        alert("Wrong username/password")
+    }
 } 
 
 
