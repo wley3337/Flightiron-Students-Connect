@@ -38,22 +38,21 @@ export const createUser= (submitData) => (dispatch) => {
 //update user
 export const updateUser = (data, categoryArray) => (dispatch) => {
     dispatch({type: LOADING});
-    console.log("updateUser", data, categoryArray)
     const noteObj = data.content;
     const existingCategory = categoryArray 
     const newCategory = data.newTopic
 
-    fetch(ROOT_URL, {
+    fetch(ROOT_URL + "/users/my-page", {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem("token")}`
             },
-        body: JSON.stringify({user: {note: {noteObj: noteObj, catagories: existingCategory, newCategory: newCategory}}})
+        body: JSON.stringify({user: {note: {noteObj: noteObj, categoryId: existingCategory, newCategory: newCategory}}})
     })
     .then(r => r.json())
-    .then(userObj => this.setState({user: userObj}))
+    .then(json => dispatch({type: SET_CURRENT_USER, payload: json}))
 }
 
 

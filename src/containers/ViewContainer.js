@@ -39,8 +39,8 @@ class ViewContainer extends React.Component{
     }
 
     handleSave = () =>{
-        const categoryArry = this.state.dropDownValueArray.map(index => this.props.categories.find(cat => cat.id === index))
-        
+        const categoryArry = this.state.dropDownValueArray
+
         this.props.updateUser(this.state, categoryArry)
     }
 

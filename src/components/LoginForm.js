@@ -22,18 +22,13 @@ class LoginForm extends Component {
  onSubmit= (e) =>{
     e.preventDefault()
     this.props.userLogin(this.state.username, this.state.password)
-    this.setState({
-        redirect: true
-    })
+   
+    this.props.history.push('/my-page')
  }
 
  render(){
     return( 
-        
-        this.state.redirect ? < Redirect to="/my-page"/> 
-        
-        : 
-        
+       
         <Form onSubmit={this.onSubmit}>
             <Form.Group widths='equal'>
             <Form.Input
