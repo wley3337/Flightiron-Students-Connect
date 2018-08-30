@@ -22,13 +22,11 @@ class LoginForm extends Component {
  onSubmit= (e) =>{
     e.preventDefault()
     this.props.userLogin(this.state.username, this.state.password)
-   
-    this.props.history.push('/my-page')
  }
 
  render(){
     return( 
-       
+        localStorage.getItem('token') ? <Redirect to="/my-page"/>  :
         <Form onSubmit={this.onSubmit}>
             <Form.Group widths='equal'>
             <Form.Input
@@ -57,4 +55,8 @@ class LoginForm extends Component {
 
 }
 
-export default connect(null, actions)(LoginForm)
+const mapStateToProps= (state) =>{
+    return {currentUser: state.currentUser}
+}
+
+export default connect(mapStateToProps, actions)(LoginForm)

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
+import {Redirect} from 'react-router'
 
 class CreateUserForm extends Component {
 
@@ -27,6 +28,7 @@ class CreateUserForm extends Component {
 
  render(){
     return( 
+        localStorage.getItem('token') ? <Redirect to="/my-page"/> :
         <Form onSubmit={this.onSubmit}>
             <Form.Group widths='equal'>
             <Form.Input
@@ -81,5 +83,8 @@ class CreateUserForm extends Component {
  }
 
 }
+const mapStateToProps= (state) =>{
+    return {currentUser: state.currentUser}
+}
 
-export default connect(null, actions)(CreateUserForm)
+export default connect(mapStateToProps, actions)(CreateUserForm)

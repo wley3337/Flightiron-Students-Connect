@@ -6,13 +6,16 @@ const currentUserReducer =( state = null, action ) =>{
 
     switch(action.type){
         case "LOADING":
-        return (console.log("loading"), state)
+        return state
         
         case "SET_CURRENT_USER":
         return action.payload
         
         case "CREATE_USER":
         return state
+
+        case "LOGOUT":
+        return null
 
         default:
         return state
@@ -25,15 +28,17 @@ const viewReducer = (state = {}, action) =>{
      
 
         default:
-        return (console.log("viewReducer"), state)
+        return  state
     }
 
 }
 
 const notesReducer = (state = [], action) =>{
     switch(action.type){
+
         case "SET_CURRENT_USER":
-        return action.payload.notes
+        return (action.payload.notes ? action.payload.notes : state)
+
         default:
         return state
     }
@@ -41,8 +46,10 @@ const notesReducer = (state = [], action) =>{
 
 const categoryReducer = (state =[], action) =>{
     switch(action.type){
+        
         case "GET_ALL_CATEGORIES":
         return action.payload
+
         default:
         return state
     }

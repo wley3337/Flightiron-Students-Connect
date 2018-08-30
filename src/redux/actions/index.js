@@ -1,5 +1,5 @@
 
-import { LOADING, SET_CURRENT_USER, CREATE_USER, GET_ALL_CATEGORIES, UPDATE_USER } from './types'
+import { LOADING, SET_CURRENT_USER, CREATE_USER, GET_ALL_CATEGORIES,  LOGOUT } from './types'
 
 const ROOT_URL = "http://127.0.0.1:3001"
 
@@ -24,6 +24,7 @@ function setUser(json, dispatch){
     if (json["success"]){
     localStorage.setItem('token', `${json["token"]}`);
     dispatch({type: SET_CURRENT_USER, payload: json["userObj"]})
+    
     }else{
         alert("Wrong username/password")
     }
@@ -32,16 +33,48 @@ function setUser(json, dispatch){
 
 export const createUser= (submitData) => (dispatch) => {
     dispatch({type: LOADING});
+    const {username, password, firstName, lastName, startDate} = submitData
+   return fetch(ROOT_URL + `/users`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Accept: "application/json"
+      },
+      body: JSON.stringify({user:{username: username, password: password, firstName: firstName, lastName: lastName, startDate: startDate}})
+  })
+  .then(r  => r.json())
+  .then(json => setUser(json, dispatch))
 
 } 
+
+export const logoutUser = () => (dispatch) => {
+    dispatch({type: LOGOUT})
+    localStorage.clear()
+}
+
+export const getUser = () => (dispatch) => {
+    dispatch({type: LOADING});
+    fetch(ROOT_URL + "/users/my-page", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+    })
+    .then(r => r.json())
+    .then(json => dispatch({type: SET_CURRENT_USER, payload: json}))
+}
+
 
 //update user
 export const updateUser = (data, categoryArray) => (dispatch) => {
     dispatch({type: LOADING});
     const noteObj = data.content;
     const existingCategory = categoryArray 
-    const newCategory = data.newTopic
-
+    const newCategory = data.newCategory
+    const userObj= {user: {note: {noteObj: noteObj, categoryId: existingCategory, 
+                                           newCategory: newCategory, public: data.public}}}
     fetch(ROOT_URL + "/users/my-page", {
         method: "PATCH",
         headers: {
@@ -49,20 +82,30 @@ export const updateUser = (data, categoryArray) => (dispatch) => {
             Accept: "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`
             },
-        body: JSON.stringify({user: {note: {noteObj: noteObj, categoryId: existingCategory, newCategory: newCategory}}})
+        body: JSON.stringify(userObj)
     })
     .then(r => r.json())
-    .then(json => dispatch({type: SET_CURRENT_USER, payload: json}))
+    .then(json => helpGetNewCat(json, dispatch) )
 }
-
 
 //fetch catagories
 export const getCategories = () => dispatch => {
+    console.log('getting Categories')
     dispatch({type: LOADING});
    return fetch(ROOT_URL + `/categories` )
   .then(r  => r.json())
   .then(json => dispatch({type: GET_ALL_CATEGORIES, payload: json}))
 }
+
+function helpGetNewCat(json, dispatch){
+    dispatch({type: SET_CURRENT_USER, payload: json})
+    dispatch(getCategories())
+
+}
+
+
+
+
 
 
 
