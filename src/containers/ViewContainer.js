@@ -13,7 +13,8 @@ class ViewContainer extends React.Component{
         content: "",
         newCategory:"",
         dropDownValueArray: [],
-        public: false
+        public: false,
+        currentFocus: this.props.view || null
     }
 
     handlePublicToggle = () => {
@@ -67,6 +68,19 @@ class ViewContainer extends React.Component{
                     onChange={(e,value) => this.handleDropDownSelect(e,value)}
                 />
     }
+
+    shiftFocus= () => {
+        if(this.state.content){ this.handleSave() }
+        if(this.state.focusNote){
+            const focusNote = this.state.currentFocus
+            this.setState({
+                content: focusNote.content,
+                dropDownValueArray: focusNote.categories? focusNote.categories : [],
+                public: focusNote.public_note
+            }) 
+        }
+    }
+
    
 
    render(){ 
@@ -76,23 +90,24 @@ class ViewContainer extends React.Component{
          <Redirect to="/"/>
         
 
-         :   
-         
-            this.props.user  ? 
-                    
-                    <div>
-                            {this.props.categories.length > 0 ? this.dipslayDropDown() : null}
-                            <Checkbox toggle label="Public" onChange={this.handlePublicToggle}/>
-                            <input type="text" name="newCategory" value={this.state.newCategory} placeholder="New Category" onChange={this.handleOnChange}/>
-                            <button name="delete" onClick={this.handleDelete}>Delete</button>
-                            <button name="save"onClick={this.handleSave}>Save</button>
-                            <textarea name="content" value={this.state.content} onChange={this.handleOnChange}/>
-                                
-                    </div>
-                :   
-                <Dimmer active>
-                <Loader size='small'>Loading</Loader>
-                </Dimmer>
+         :   this.state.currentFocus ? 
+                this.shiftFocus() 
+            :
+                this.props.user  ? 
+                        
+                        <div>
+                                {this.props.categories.length > 0 ? this.dipslayDropDown() : null}
+                                <Checkbox toggle label="Public" onChange={this.handlePublicToggle}/>
+                                <input type="text" name="newCategory" value={this.state.newCategory} placeholder="New Category" onChange={this.handleOnChange}/>
+                                <button name="delete" onClick={this.handleDelete}>Delete</button>
+                                <button name="save"onClick={this.handleSave}>Save</button>
+                                <textarea name="content" value={this.state.content} onChange={this.handleOnChange}/>
+                                    
+                        </div>
+                    :   
+                        <Dimmer active>
+                            <Loader size='small'>Loading</Loader>
+                        </Dimmer>
         
         )}
     }
@@ -101,7 +116,8 @@ const mapStateToProps = (state) => {
    return {
        categories: state.categories,
        notes: state.notes,
-       user: state.currentUser
+       user: state.currentUser,
+       view: state.view
     }
 }
 

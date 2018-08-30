@@ -1,17 +1,66 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
+import { Input, Menu, Segment } from 'semantic-ui-react'
 
 class SelectionContainer extends React.Component {
+    state ={
+        activeItem: 'myNotes',
+        activeCollection: []
+    }
 
+    handleItemClick = (argument) =>{
+        console.log(argument)
+        let activeCollection;
+         switch(argument){
+            case "myNotes":
+             activeCollection = this.props.notes
+             break
+            case "publicNotes":
+              activeCollection= []
+              break
+            default:
+            null   
+        }
+        console.log("active collection is: ",activeCollection)
+        this.setState({
+            activeItem: argument,
+            activeCollection: activeCollection
+        })
+    }
+
+    handleItemFocus= (item) =>{
+        console.log(item)
+    }
 
 
     render(){
         return(
             this.props.user ?
-            <div>
-                SelectionContainer
-            </div>
+                    <div>
+                    <Menu pointing>
+                        <Menu.Item name='myNotes' active={this.state.activeItem === 'myNotes'} onClick={() => this.handleItemClick("myNotes")} />
+                        <Menu.Item
+                            name='publicNotes'
+                            active={this.state.activeItem === 'publicNotes'}
+                            onClick={() => this.handleItemClick("publicNotes")}
+                            value="publicNotes"
+                        />
+                   
+                    <Menu.Menu position='right'>
+                        <Menu.Item>
+                        <Input icon='search' placeholder='Search...' />
+                        </Menu.Item>
+                    </Menu.Menu>
+                    </Menu>
+            
+                    <Segment>
+                            {this.state.activeCollection.map(item => <p key={item.id}onClick={()=> this.handleItemFocus(item)}>
+                                                                        
+                                                                        {item.note_content.substring(0,50)}       
+                                                                     </p> )}
+                    </Segment>
+                </div>
             :
             null
         )

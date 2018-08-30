@@ -23,7 +23,7 @@ const currentUserReducer =( state = null, action ) =>{
 
 }
 
-const viewReducer = (state = {}, action) =>{
+const viewReducer = (state = null, action) =>{
     switch(action.type){
      
 
@@ -38,6 +38,9 @@ const notesReducer = (state = [], action) =>{
 
         case "SET_CURRENT_USER":
         return (action.payload.notes ? action.payload.notes : state)
+
+        case "LOGOUT":
+        return []
 
         default:
         return state
