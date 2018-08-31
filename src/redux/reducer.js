@@ -22,11 +22,29 @@ const currentUserReducer =( state = null, action ) =>{
     }
 
 }
+        
 
-const viewReducer = (state = null, action) =>{
+const viewReducer = (state = {noteId: null, content: "", dropDownValueArray: [], public: false, noteUserId: null, newCategory: ""}, action) =>{
+    
     switch(action.type){
-     
 
+        case "SET_FOCUS_NOTE":
+        const {note, categories} = action.payload
+
+        return {content: note.note_content, dropDownValueArray: categories.map(cat => cat.id), public: note.public_note, noteUserId: note.user_id, noteId: note.id}
+
+        case "UPDATE_CATEGORIES":
+        return {...state, dropDownValueArray: action.payload}
+
+        case "UPDATE_NOTE_CONTENT":
+        return {...state, content: action.payload}
+
+        case "UPDATE_PUBLIC":
+        return {...state, public: !action.payload}
+
+        case "UPDATE_NEW_CATEGORY":
+        return {...state, newCategory: action.payload}
+     
         default:
         return  state
     }
@@ -37,7 +55,8 @@ const notesReducer = (state = [], action) =>{
     switch(action.type){
 
         case "SET_CURRENT_USER":
-        return (action.payload.notes ? action.payload.notes : state)
+     
+        return  action.payload.notes 
 
         case "LOGOUT":
         return []

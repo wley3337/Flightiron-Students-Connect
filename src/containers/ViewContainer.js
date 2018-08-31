@@ -9,36 +9,16 @@ import { Redirect } from 'react-router'
 
 
 class ViewContainer extends React.Component{
-    state = {
-        content: "",
-        newCategory:"",
-        dropDownValueArray: [],
-        public: false,
-        currentFocus: this.props.view || null
-    }
-
-    handlePublicToggle = () => {
-        this.setState({
-            public: !this.state.public
-        })
-    }
-
-    handleOnChange= (e) =>{
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-    handleDropDownSelect = (e,value) => {
-        this.setState({
-            dropDownValueArray: value.value
-        })
-    }
 
     componentDidMount(){
-        this.props.getCategories()
+        
         if(localStorage.getItem('token')){
+        this.props.getCategories()
         this.props.getUser()
         }
+        // if(this.props.view){
+        //     this.shiftFocus()
+        // }
     }
 
     handleDelete = () =>{
@@ -50,13 +30,12 @@ class ViewContainer extends React.Component{
     }
 
     handleSave = () =>{
-        const categoryArry = this.state.dropDownValueArray
-        this.props.updateUser(this.state, categoryArry)
-        this.dipslayDropDown()
+        this.props.updateUser(this.props.view, this.props.user.id)
     }
 
     dipslayDropDown(){
     const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
+
     return <Dropdown 
                     placeholder='Categories' 
                     fluid 
@@ -64,22 +43,12 @@ class ViewContainer extends React.Component{
                     search 
                     selection 
                     options= {optionsArray}
-                    value={this.state.dropDownValueArray}
-                    onChange={(e,value) => this.handleDropDownSelect(e,value)}
+                    value={this.props.view.dropDownValueArray}
+                    onChange={(e,value) => this.props.updateCategories(value.value)}
                 />
     }
 
-    shiftFocus= () => {
-        if(this.state.content){ this.handleSave() }
-        if(this.state.focusNote){
-            const focusNote = this.state.currentFocus
-            this.setState({
-                content: focusNote.content,
-                dropDownValueArray: focusNote.categories? focusNote.categories : [],
-                public: focusNote.public_note
-            }) 
-        }
-    }
+
 
    
 
@@ -89,21 +58,26 @@ class ViewContainer extends React.Component{
          
          <Redirect to="/"/>
         
-
-         :   this.state.currentFocus ? 
-                this.shiftFocus() 
-            :
+         :   
+        
                 this.props.user  ? 
-                        
-                        <div>
-                                {this.props.categories.length > 0 ? this.dipslayDropDown() : null}
-                                <Checkbox toggle label="Public" onChange={this.handlePublicToggle}/>
-                                <input type="text" name="newCategory" value={this.state.newCategory} placeholder="New Category" onChange={this.handleOnChange}/>
-                                <button name="delete" onClick={this.handleDelete}>Delete</button>
-                                <button name="save"onClick={this.handleSave}>Save</button>
-                                <textarea name="content" value={this.state.content} onChange={this.handleOnChange}/>
+                     
+                                <div>
+                                    {this.props.categories.length > 0 ? this.dipslayDropDown() : null}
+                                    <Checkbox toggle label="Public"  checked={this.props.view.public} onChange={() => this.props.updatePublic(this.props.view.public)}/>
+                                    <input 
+                                        type="text" 
+                                        name="newCategory" 
+                                        value={this.props.view.newCategory} 
+                                        placeholder="New Category" 
+                                        onChange={(e) => this.props.updateNewCategory(e.target.value)}
+                                    />
+                                    <button name="delete" onClick={this.handleDelete}>Delete</button>
+                                    <button name="save"onClick={this.handleSave}>Save</button>
+                                    <textarea name="content" value={this.props.view.content} onChange={(e) =>{this.props.updateNoteContent(e.target.value)}}/>
                                     
-                        </div>
+                                </div>
+                        
                     :   
                         <Dimmer active>
                             <Loader size='small'>Loading</Loader>
