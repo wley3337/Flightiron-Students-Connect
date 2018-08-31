@@ -21,3 +21,7 @@ export const UPDATE_NEW_CATEGORY = "UPDATE_NEW_CATEGORY"
 
 //category actions
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES"
+
+//public note actions
+
+export const GET_ALL_PUBLIC_NOTES = "GET_ALL_PUBLIC_NOTES"

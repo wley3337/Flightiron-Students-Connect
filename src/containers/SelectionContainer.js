@@ -5,8 +5,8 @@ import { Input, Menu, Segment } from 'semantic-ui-react'
 
 class SelectionContainer extends React.Component {
     state ={
-        activeItem: 'myNotes',
-        activeCollection: []
+        activeItem: 'newNote',
+        activeCollection: this.props.notes
     }
 
     //sets the active collection based on menu item name. Uses store to populate the []
@@ -17,7 +17,7 @@ class SelectionContainer extends React.Component {
              activeCollection = this.props.notes
              break
             case "publicNotes":
-              activeCollection= []
+              activeCollection= this.props.publicNotes
               break
             default:
             null   
@@ -29,8 +29,15 @@ class SelectionContainer extends React.Component {
     }
 
     handleItemFocus= (item) =>{
-        console.log(item)
         this.props.setFocusNote(item)
+    }
+
+    handleNewNoteClick = () =>{
+        this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
+        this.setState({
+            activeItem: 'newNote',
+            activeCollection: []
+        })
     }
 
 
@@ -39,6 +46,12 @@ class SelectionContainer extends React.Component {
             this.props.user ?
                     <div>
                     <Menu pointing>
+                        <Menu.Item
+                            name='newNote'
+                            active={this.state.activeItem === 'newNote'}
+                            onClick={this.handleNewNoteClick }
+                            value="newNote"
+                        />
                         <Menu.Item 
                             name='myNotes' 
                             active={this.state.activeItem === 'myNotes'}
@@ -59,10 +72,12 @@ class SelectionContainer extends React.Component {
                     </Menu>
             
                     <Segment>
-                            {this.state.activeCollection.map(item => <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
-                                                                        
+                           
+                               { this.state.activeCollection.map(item => <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
                                                                         {item.note.note_content.substring(0,50)}       
-                                                                     </p> )}
+                                                                         </p> )}
+                                                                        
+
                     </Segment>
                 </div>
             :
@@ -75,7 +90,8 @@ const mapStateToProps = (state) => {
     return {
         categories: state.categories,
         notes: state.notes,
-        user: state.currentUser
+        user: state.currentUser,
+        publicNotes: state.publicNotes
      }
  }
     

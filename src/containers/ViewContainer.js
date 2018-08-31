@@ -15,44 +15,40 @@ class ViewContainer extends React.Component{
         if(localStorage.getItem('token')){
         this.props.getCategories()
         this.props.getUser()
+        this.props.getAllPublicNotes()
         }
-        // if(this.props.view){
-        //     this.shiftFocus()
-        // }
+      
     }
 
     handleDelete = () =>{
-        this.setState({
-            content: "",
-            newCategory:"",
-            dropDownValueArray: []
-        })   
+       console.log("handleDelete")
     }
 
     handleSave = () =>{
         this.props.updateUser(this.props.view, this.props.user.id)
     }
 
-    dipslayDropDown(){
-    const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
+    // dipslayDropDown(){
+    // const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
 
-    return <Dropdown 
-                    placeholder='Categories' 
-                    fluid 
-                    multiple
-                    search 
-                    selection 
-                    options= {optionsArray}
-                    value={this.props.view.dropDownValueArray}
-                    onChange={(e,value) => this.props.updateCategories(value.value)}
-                />
-    }
+    // return <Dropdown 
+    //                 placeholder='Categories' 
+    //                 fluid 
+    //                 multiple
+    //                 search 
+    //                 selection 
+    //                 options= {optionsArray}
+    //                 value={this.props.view.dropDownValueArray}
+    //                 onChange={(e,value) => this.props.updateCategories(value.value)}
+    //             />
+    // }
 
 
 
    
 
    render(){ 
+      const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
         return(
          !localStorage.getItem('token') ? 
          
@@ -63,7 +59,18 @@ class ViewContainer extends React.Component{
                 this.props.user  ? 
                      
                                 <div>
-                                    {this.props.categories.length > 0 ? this.dipslayDropDown() : null}
+                                    {optionsArray ?
+                                        <Dropdown 
+                                            placeholder='Categories' 
+                                            fluid 
+                                            multiple
+                                            search 
+                                            selection 
+                                            options= {optionsArray}
+                                            value={this.props.view.dropDownValueArray}
+                                            onChange={(e,value) => this.props.updateCategories(value.value)}
+                                        />
+                                        : null}
                                     <Checkbox toggle label="Public"  checked={this.props.view.public} onChange={() => this.props.updatePublic(this.props.view.public)}/>
                                     <input 
                                         type="text" 

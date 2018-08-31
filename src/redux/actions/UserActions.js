@@ -69,7 +69,6 @@ export const getUser = () => (dispatch) => {
 //update user
 export const updateUser = (data, userId) => (dispatch) => {
     dispatch({type: LOADING});
-    debugger
     const noteId = data.noteId;
     const noteObj = data.content;
     const existingCategory = data.dropDownValueArray 
