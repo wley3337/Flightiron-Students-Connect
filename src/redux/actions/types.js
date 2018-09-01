@@ -6,7 +6,7 @@ export const CREATE_USER = "CREATE_USER"
 export const LOGOUT = "LOGOUT"
 
 //note actions
-
+export const DELETE_NOTE = "DELETE_NOTE"
 
 
 //view actions

@@ -20,7 +20,7 @@ export const userLogin = (username, password) => dispatch => {
 }
 
 //helper function that sets the user object in store and in localStorage
-function setUser(json, dispatch){
+export function setUser(json, dispatch){
     if (json["success"]){
     localStorage.setItem('token', `${json["token"]}`);
     dispatch({type: SET_CURRENT_USER, payload: json["userObj"]})
