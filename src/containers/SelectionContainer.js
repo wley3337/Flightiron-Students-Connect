@@ -6,7 +6,8 @@ import { Input, Menu, Segment } from 'semantic-ui-react'
 class SelectionContainer extends React.Component {
     state ={
         activeItem: 'newNote',
-        activeCollection: this.props.notes
+        activeCollection: this.props.notes,
+        searchTerm: ""
     }
 
     //sets the active collection based on menu item name. Uses store to populate the []
@@ -40,6 +41,17 @@ class SelectionContainer extends React.Component {
         })
     }
 
+    handleOnSearchChange = (e) =>{
+        this.setState({
+            searchTerm: e.target.value.toLowerCase()
+        })
+    }
+
+    handleFilterSelectionOnSearch = () =>{
+      return  this.state.activeCollection.filter(item => item.note.note_content.toLowerCase().includes(this.state.searchTerm))
+    }
+
+
 
     render(){
         return(
@@ -64,16 +76,20 @@ class SelectionContainer extends React.Component {
                             value="publicNotes"
                         />
                    
-                    {/* <Menu.Menu position='right'>
-                        <Menu.Item>
-                        <Input icon='search' placeholder='Search...' />
-                        </Menu.Item>
-                    </Menu.Menu> */}
+                        <Menu.Menu position='right'>
+                            <Menu.Item>
+                                <Input 
+                                icon='search' 
+                                placeholder='Search...'
+                                onChange={this.handleOnSearchChange}
+                                />
+                            </Menu.Item>
+                        </Menu.Menu>
                     </Menu>
             
                     <Segment>
                            
-                               { this.state.activeCollection.map(item => <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
+                               { this.handleFilterSelectionOnSearch().map(item => <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
                                                                         {item.note.note_content.substring(0,50)}       
                                                                          </p> )}
                                                                         
