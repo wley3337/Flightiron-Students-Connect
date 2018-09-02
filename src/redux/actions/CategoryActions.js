@@ -1,4 +1,4 @@
-import { LOADING, SET_CURRENT_USER,  GET_ALL_CATEGORIES } from './types'
+import { LOADING,  GET_ALL_CATEGORIES } from './types'
 
 import { ROOT_URL } from './index'
 
@@ -15,8 +15,8 @@ export const getCategories = () => dispatch => {
   .then(json => dispatch({type: GET_ALL_CATEGORIES, payload: json}))
 }
 
-export function helpGetNewCat(json, dispatch){
-    dispatch({type: SET_CURRENT_USER, payload: json})
+export function helpGetNewCat(dispatch){
+   
     dispatch(getCategories())
 
 }

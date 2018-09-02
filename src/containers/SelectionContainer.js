@@ -6,9 +6,24 @@ import { Input, Menu, Segment } from 'semantic-ui-react'
 class SelectionContainer extends React.Component {
     state ={
         activeItem: 'newNote',
-        activeCollection: this.props.notes,
-        searchTerm: ""
+        activeCollection: [],
+        searchTerm: "",
     }
+
+    // shouldComponentUpdate(){
+    //     let activeCollection;
+    //     switch(this.state.activeItem){
+    //        case "myNotes":
+    //         activeCollection = this.props.notes
+    //         break
+    //        case "publicNotes":
+    //          activeCollection= this.props.publicNotes
+    //          break
+    //        default:
+    //        []  
+    //    }
+    //     return this.state.activeCollection.length < activeCollection
+    // }
 
     //sets the active collection based on menu item name. Uses store to populate the []
     handleItemClick = (argument) =>{

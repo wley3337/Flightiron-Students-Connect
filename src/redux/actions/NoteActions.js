@@ -4,7 +4,6 @@ import { ROOT_URL } from './index'
 
 
  export const deleteNote= (noteInfo) => (dispatch) =>{
-     console.log(noteInfo)
     dispatch({type: LOADING});
 
     fetch(ROOT_URL + "/notes", {
@@ -17,8 +16,7 @@ import { ROOT_URL } from './index'
         body: JSON.stringify(noteInfo)
     })
     .then(r => r.json())
-    .then(console.log)
-        // json => setUser(json, dispatch))
+    .then(json => setUser(json, dispatch))
 
 
 

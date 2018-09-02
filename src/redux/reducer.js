@@ -11,8 +11,8 @@ const currentUserReducer =( state = null, action ) =>{
         case "SET_CURRENT_USER":
         return action.payload
         
-        case "CREATE_USER":
-        return state
+        // case "CREATE_USER":
+        // return state
 
         case "LOGOUT":
         return null
@@ -55,6 +55,8 @@ const notesReducer = (state = [], action) =>{
     switch(action.type){
 
         case "SET_CURRENT_USER":
+        // const newCollection =[...state, ...action.payload.notes]
+        // return [...new Set(newCollection)]
         return  action.payload.notes 
 
         case "LOGOUT":

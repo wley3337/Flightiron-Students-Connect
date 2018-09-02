@@ -1,4 +1,4 @@
-import { LOADING, SET_CURRENT_USER, CREATE_USER,  LOGOUT} from './types'
+import { LOADING, SET_CURRENT_USER, LOGOUT} from './types'
 import {helpGetNewCat} from './CategoryActions'
 
 import { ROOT_URL } from './index'
@@ -21,10 +21,13 @@ export const userLogin = (username, password) => dispatch => {
 
 //helper function that sets the user object in store and in localStorage
 export function setUser(json, dispatch){
-    if (json["success"]){
-    localStorage.setItem('token', `${json["token"]}`);
-    dispatch({type: SET_CURRENT_USER, payload: json["userObj"]})
     
+    if (json["success"] && json["token"]){
+        localStorage.setItem('token', `${json["token"]}`);
+        dispatch({type: SET_CURRENT_USER, payload: json["userObj"]})
+    
+    }else if(json["success"]){
+        dispatch({type: SET_CURRENT_USER, payload: json["userObj"]})
     }else{
         alert("Wrong username/password")
     }
@@ -63,7 +66,7 @@ export const getUser = () => (dispatch) => {
             },
     })
     .then(r => r.json())
-    .then( json => dispatch({type: SET_CURRENT_USER, payload: json}))
+    .then( json => dispatch({type: SET_CURRENT_USER, payload: json["userObj"]}))
 }
 
 //update user
@@ -85,7 +88,15 @@ export const updateUser = (data, userId) => (dispatch) => {
         body: JSON.stringify(userObj)
     })
     .then(r => r.json())
-    .then(json => helpGetNewCat(json, dispatch) )
+    .then(json => manageNewCategoriesAndSetUser(json, dispatch) )
+}
+
+
+
+function manageNewCategoriesAndSetUser(json, dispatch) {
+   
+    helpGetNewCat(dispatch);
+    setUser(json, dispatch)
 }
 
 
