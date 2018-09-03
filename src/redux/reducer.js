@@ -58,6 +58,7 @@ const notesReducer = (state = [], action) =>{
         // const newCollection =[...state, ...action.payload.notes]
         // return [...new Set(newCollection)]
         return  action.payload.notes 
+        // return [...state, action.payload.notes][0]
 
         case "LOGOUT":
         return []
