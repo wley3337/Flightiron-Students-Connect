@@ -27,29 +27,39 @@ class LoginForm extends Component {
  render(){
     return( 
         localStorage.getItem('token') ? <Redirect to="/my-page"/>  :
-        <Form onSubmit={this.onSubmit}>
-            <Form.Group widths='equal'>
-            <Form.Input
-                fluid
-                id='form-subcomponent-shorthand-input-first-name'
-              
-                name="username"
-                value={this.state.username}
-                placeholder='username'
-                onChange={this.onChange}
-            />
-            <Form.Input
-                fluid
-                id='form-subcomponent-shorthand-input-last-name'
+        <div id = "full-window">
+            <form onSubmit={this.onSubmit} id = "login-form">
                
-                value={this.state.password}
-                placeholder='password'
-                onChange={this.onChange}
-                name="password"
-            />
-            <Form.Field control={Button} >Submit</Form.Field>
-            </Form.Group>
-        </Form>
+                <input
+                    type="text"
+                    id="li-user-name"
+                    className="text-bg-stnd"
+                    name="username"
+                    value={this.state.username}
+                    placeholder='username'
+                    onChange={this.onChange}
+                />
+                <input 
+                type="text"
+                    id="li-password"
+                    className="text-bg-stnd"
+                    // id='form-subcomponent-shorthand-input-last-name'
+                
+                    value={this.state.password}
+                    placeholder='password'
+                    onChange={this.onChange}
+                    name="password"
+                />
+                <input 
+                    name="Log-In"
+                    className="text-bg-stnd"
+                    value="Log-In"
+                    type="Submit" 
+                    id="li-submit"
+                    />
+                   
+            </form>
+        </div>
         )
  }
 

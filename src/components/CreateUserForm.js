@@ -29,56 +29,58 @@ class CreateUserForm extends Component {
  render(){
     return( 
         localStorage.getItem('token') ? <Redirect to="/my-page"/> :
-        <Form onSubmit={this.onSubmit}>
-            <Form.Group widths='equal'>
-            <Form.Input
-                fluid
-                id='form-subcomponent-shorthand-input-first-name'
+        <form onSubmit={this.onSubmit} id="form-style" >
+            
+            <input
+                id="li-user-name"
+                className="text-bg-stnd"
                 
                 name="username"
                 value={this.state.username}
                 placeholder='username'
                 onChange={this.onChange}
             />
-            <Form.Input
-                fluid
-                id='form-subcomponent-shorthand-input-last-name'
+            <input
+                id="li-password"
+                className="text-bg-stnd"
                 
                 value={this.state.password}
                 placeholder='password'
                 onChange={this.onChange}
                 name="password"
             />
-             <Form.Input
-                fluid
-                id='form-subcomponent-shorthand-input-last-name'
-                
+             <input
+                id="cu-first-name"
+                className="text-bg-stnd"
                 value={this.state.firstName}
                 placeholder='First Name'
                 onChange={this.onChange}
                 name="firstName"
             />
-             <Form.Input
-                fluid
-                id='form-subcomponent-shorthand-input-last-name'
-                
+             <input
+                id="cu-last-name"
+                className="text-bg-stnd"
                 value={this.state.lastName}
                 placeholder='Last Name'
                 onChange={this.onChange}
                 name="lastName"
             />
-             <Form.Input
-                fluid
-                id='form-subcomponent-shorthand-input-last-name'
-               
+             <input
+                id="cu-start-date"
+                className="text-bg-stnd"
                 value={this.state.startDate}
                 placeholder='Start Date : YYYY-MM-DD'
                 onChange={this.onChange}
                 name="startDate"
             />
-            <Form.Field control={Button}>Submit</Form.Field>
-            </Form.Group>
-        </Form>
+            <input 
+                id="cu-submit"
+                className="text-bg-stnd"
+                type="submit" 
+                value="Create an account"
+            />
+            
+        </form>
         )
  }
 

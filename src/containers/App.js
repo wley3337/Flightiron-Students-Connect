@@ -15,8 +15,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-          <Route exact path="/" component={HomeScreenButtons}/>
+      <div className="compass">
+          <Route exact path="/" render={() => <HomeScreenButtons />}/>
           <Route exact path="/login" component={  LoginForm } />
           <Route exact path="/create-user" component={  CreateUserForm } />
           <Route exact path="/my-page" component={ NavBar} />
