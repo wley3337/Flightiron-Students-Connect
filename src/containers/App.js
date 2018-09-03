@@ -19,9 +19,11 @@ class App extends Component {
           <Route exact path="/" render={() => <HomeScreenButtons />}/>
           <Route exact path="/login" component={  LoginForm } />
           <Route exact path="/create-user" component={  CreateUserForm } />
-          <Route exact path="/my-page" component={ NavBar} />
-          <Route exact path="/my-page" render={() =>  <ViewContainer/> }/>
-          <Route exact path="/my-page" render={() =>  <SelectionContainer/> }/>
+          
+            <Route exact path="/my-page" render={() => <NavBar/>} />
+            <Route exact path="/my-page" render={() =>  <ViewContainer/> }/>
+            <Route exact path="/my-page" render={() =>  <SelectionContainer/> }/>
+          
       </div>
     );
   }

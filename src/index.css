@@ -16,8 +16,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; 
+  grid-template-columns: 2% 18% 20% 20% 20% 18% 2%;
+  grid-template-rows: 6.5% 10% 10% 10% 10% 10% 10% 10% 10% 10%; 
 }
 
 
@@ -131,5 +131,63 @@ body {
   text-align: center;
 }
 
+/* main page */
+/* grid system is off of the compass grid */
 
+#top-nav-bar {
+  grid-column-start: 1;
+  grid-column-end: 8;
+  grid-row-start: 1;
+  text-align: center;
+}
+
+#view-container {
+  grid-column-start: 1;
+  grid-column-end: 8;
+  grid-row-start: 2;
+  grid-row-end: 8;
+  display: grid;
+  grid-template-rows: 10% 15% 75%;
+}
+
+#view-nav-bar {
+  grid-row: 2;
+  text-align: center;
+  display: grid;
+
+}
+
+#view-delete{
+  color:#D7263D;
+  background-color:  #034078;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row: 1;
+}
+
+/* #view-public{
+  grid-column-start: 4;
+  grid-column-end: 5;
+} */
+
+#view-new-category{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row: 1;
+}
+#view-save{
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row: 1;
+}
+#view-nav-bar > span{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row: 1;
+}
+span > #text-bg-stnd {
+  background-color:  #034078;
+  color: #FEFCFB;
+ 
+}
 
