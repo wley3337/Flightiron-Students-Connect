@@ -4,11 +4,24 @@ import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 import {Dimmer, Loader, Checkbox } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
-
+import ReactQuill from 'react-quill';
+import ViewNavBar from './ViewNavBar'
 
 
 
 class ViewContainer extends React.Component{
+
+    state ={
+        text: "",
+        addDropDown: []
+    }
+
+    handleOnChange = (value) =>{
+    
+        this.setState({
+            text: value
+        })
+    }
 
     componentDidMount(){
         
@@ -20,24 +33,17 @@ class ViewContainer extends React.Component{
       
     }
 
-    // handleDelete = () =>{
-    //     if(this.props.view.noteId && (this.props.view.noteUserId === this.props.user.id)){
-    //       const noteId = this.props.view.noteId
-    //       const noteInfo={ id: noteId }
-    //       this.props.deleteNote({note: noteInfo})
-    //     }else{
-    //         this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
-    //     }
-       
-    // }
+   
 
-    // handleSave = () =>{
-    //     this.props.updateUser(this.props.view, this.props.user.id)
-    // }
-
+    handleOnAdd = (e) =>{
+        const newCat = { key: e.target.value, text: e.target.value, value: e.target.value }
+        this.props.addCategoryLocal(newCat)
+    }
 
    render(){ 
-      const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
+    //   const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
+
+      
         return(
          !localStorage.getItem('token') ? 
          
@@ -46,9 +52,10 @@ class ViewContainer extends React.Component{
          :   
         
                 this.props.user  ? 
-                     
-                                <div id="view-container">
-                                    {optionsArray ?
+                        <div id="view-container">
+                            <ViewNavBar/>
+                                <span id="view-categories">
+                                    {this.props.categories ?
                                         <Dropdown 
                                             className="text-bg-stnd"
                                             placeholder='Categories' 
@@ -56,13 +63,17 @@ class ViewContainer extends React.Component{
                                             multiple
                                             search 
                                             selection 
-                                            options= {optionsArray}
+                                            
+                                            // additionLabel
+                                            allowAdditions
+                                            onAddItem={this.handleOnAdd}
+                                            options= {this.props.categories}
                                             value={this.props.view.dropDownValueArray}
                                             onChange={(e,value) => this.props.updateCategories(value.value)}
                                         />
                                         : null}
-                                    <div id="view-nav-bar">
-                                
+                                    
+{/*                                 
                                         <input 
                                             id="view-new-category"
                                             className="text-bg-stnd"
@@ -71,16 +82,18 @@ class ViewContainer extends React.Component{
                                             value={this.props.view.newCategory} 
                                             placeholder="New Category" 
                                             onChange={(e) => this.props.updateNewCategory(e.target.value)}
-                                        />
+                                        /> */}
                                       
-                                    </div>
-                                    <textarea 
-                                    id ="view-note-area"
-                                    name="content" 
-                                    placeholder="Thoughts on the subject"
-                                    value={this.props.view.content} onChange={(e) =>{this.props.updateNoteContent(e.target.value)}}/>
-                                    
-                                </div>
+                                    </span>
+                                    <ReactQuill 
+                                        id="view-note-area"
+                                        // style="view-note-area"
+                                        theme="snow" 
+                                        // modules={this.toolBarModuels}
+                                        value={this.props.view.content} 
+                                        onChange={(value) =>{this.props.updateNoteContent(value)}} 
+                                    />
+                        </div>
                         
                     :   
                         <Dimmer active>

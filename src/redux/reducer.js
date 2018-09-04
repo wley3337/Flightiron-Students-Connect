@@ -74,6 +74,9 @@ const categoryReducer = (state =[], action) =>{
         case "GET_ALL_CATEGORIES":
         return action.payload
 
+        case "ADD_CATEGORY":
+        return [...state, action.payload]
+
         default:
         return state
     }
@@ -104,6 +107,24 @@ const flashMessageReducer =(state=[], action) =>{
     }
 }
 
+const searchTermReducer = (state ="", action) =>{
+    switch(action.type){
+        case "SET_SEARCH_TERM":
+        return action.payload
+        default:
+        return state
+    }
+}
+const ownerFocusReducer = (state ="", action) =>{
+    switch(action.type){
+        case "SET_OWNER_FOCUS":
+        return action.payload
+
+        default:
+        return state
+    }
+}
+
 
 
 const reducers ={
@@ -112,7 +133,9 @@ const reducers ={
     notes: notesReducer,
     categories: categoryReducer,
     publicNotes: publicNoteReducer,
-    flashMessage: flashMessageReducer
+    flashMessage: flashMessageReducer,
+    searchTerm: searchTermReducer,
+    ownerFocus: ownerFocusReducer
 }
 
 export default combineReducers(reducers)

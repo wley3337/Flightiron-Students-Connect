@@ -21,6 +21,7 @@ export const UPDATE_NEW_CATEGORY = "UPDATE_NEW_CATEGORY"
 
 //category actions
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES"
+export const ADD_CATEGORY = "ADD_CATEGORY"
 
 //public note actions
 
@@ -30,3 +31,12 @@ export const GET_ALL_PUBLIC_NOTES = "GET_ALL_PUBLIC_NOTES"
 
 export const SET_FLASH_MESSAGE = "SET_FLASH_MESSAGE"
 export const DELETE_FLASH_MESSAGE = "DELETE_FLASH_MESSAGE"
+
+
+//search term
+
+export const SET_SEARCH_TERM = "SET_SEARCH_TERM"
+
+//owner focus
+
+export const SET_OWNER_FOCUS = "SET_OWNER_FOCUS"

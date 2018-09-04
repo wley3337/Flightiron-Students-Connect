@@ -1,99 +1,112 @@
 import React from 'react'
-import { Menu, Label, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
+import { Input, Menu } from 'semantic-ui-react'
+import { Route } from 'react-router-dom'
+
+import SelectionContainer from './SelectionContainer'
 
 class NavBar extends React.Component {
+
     state ={
-        activeItem: ""
+        activeItem: 'newNote'
     }
 
-    handleItemClick = (e) =>{
+    componentDidMount(){
+        
+        if(localStorage.getItem('token')){
+        this.props.getCategories()
+        this.props.getUser()
+        this.props.getAllPublicNotes()
+        }
+      
+    }
+
+   
+    //sets the active collection based on menu item name. Uses store to populate the []
+    handleItemClick = (argument) =>{
+        this.props.setOwnerFocus(argument)
+    }
+
+    handleItemFocus= (item) =>{
+        this.props.setFocusNote(item)
+    }
+
+    handleNewNoteClick = () =>{
+        this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
         this.setState({
-            activeItem: e.target.name
+            activeItem: 'newNote',
         })
     }
-    
+
+    handleOnSearchChange = (e) =>{
+        this.setState({
+            searchTerm: e.target.value.toLowerCase()
+        })
+    }
+
     handleLogOut = (e) =>{    
         this.handleItemClick(e)
         this.props.logoutUser()
-        // this.context.history.push({pathname: '/'})
     }
 
-    handleDelete = () =>{
-        if(this.props.view.noteId && (this.props.view.noteUserId === this.props.user.id)){
-          const noteId = this.props.view.noteId
-          const noteInfo={ id: noteId }
-          this.props.deleteNote({note: noteInfo})
-          this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
-        }else{
-            this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
-        }
-       
+   
+
+    render(){
+        return(
+            this.props.user ?
+                    <div id="select-container">
+                    <Menu >
+                        <Menu.Item
+                            name='logout'
+                            active={this.state.activeItem === 'logout'}
+                            onClick={this.handleLogOut}
+                        />  
+                        <Menu.Item
+                            name='newNote'
+                            active={this.state.activeItem === 'newNote'}
+                            onClick={this.handleNewNoteClick }
+                            value="newNote"
+                        />
+                        <Menu.Item 
+                            name='myNotes' 
+                            active={this.state.activeItem === 'myNotes'}
+                            onClick={() => this.handleItemClick("myNotes")} 
+                        />
+                        <Menu.Item
+                            name='publicNotes'
+                            active={this.state.activeItem === 'publicNotes'}
+                            onClick={() => this.handleItemClick("publicNotes")}
+                            value="publicNotes"
+                        />
+                   
+                        {/* <Menu.Menu position='right'> */}
+                            {/* <Menu.Item>
+                                <Input 
+                                icon='search' 
+                                placeholder='Search...'
+                                onChange={this.handleOnSearchChange}
+                                />
+                            </Menu.Item> */}
+                        {/* </Menu.Menu> */}
+                    </Menu>
+                   
+                  <Route exact path="/select" component={SelectionContainer}/>
+                </div>
+            :
+            null
+        )
     }
-
-    handleSave = () =>{
-        this.props.updateUser(this.props.view, this.props.user.id)
-    }
-
-    render ()
-        {const { activeItem } = this.state
-    return(
-        <div id ="top-nav-bar">
-            <Menu className="text-bg-stnd">
-                <Menu.Item
-                name='logout'
-                active={activeItem === 'logout'}
-                onClick={this.handleLogOut}
-                >
-                Logout
-                </Menu.Item>
-                 <Menu.Item>
-                <Checkbox 
-                
-                label="Public"
-                id="view-public"
-                toggle
-                checked={this.props.view.public} onChange={() => this.props.updatePublic(this.props.view.public)}
-                />
-                </Menu.Item> 
-                                  
-             <Menu.Item
-                name='delete'
-                active={activeItem === 'delete'}
-                onClick={this.handleDelete}
-                >
-                Delete
-                </Menu.Item>                   
-                <Menu.Item
-                name='save'
-                active={activeItem === 'upcomingEvents'}
-                onClick={this.handleSave}
-                >
-                Save
-                </Menu.Item>
-
-
-                {/* <Menu.Item
-                name='upcomingEvents'
-                active={activeItem === 'upcomingEvents'}
-                onClick={this.handleItemClick}
-                >
-                Upcoming Events
-                </Menu.Item> */}
-        </Menu>
-      </div>
-    )
-}
 }
 
 const mapStateToProps = (state) => {
-   return {
-       categories: state.categories,
-       notes: state.notes,
-       user: state.currentUser,
-       view: state.view
-    }
-}
+    return {
+        categories: state.categories,
+        notes: state.notes,
+        user: state.currentUser,
+        publicNotes: state.publicNotes
+     }
+ }
+    
 
-export default connect(mapStateToProps, actions)(NavBar)
+export default connect(mapStateToProps, actions) (NavBar)

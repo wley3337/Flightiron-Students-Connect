@@ -1,4 +1,4 @@
-import { LOADING,  GET_ALL_CATEGORIES } from './types'
+import { LOADING,  GET_ALL_CATEGORIES, ADD_CATEGORY } from './types'
 
 import { ROOT_URL } from './index'
 
@@ -12,11 +12,18 @@ export const getCategories = () => dispatch => {
     Authorization: `Bearer ${localStorage.getItem("token")}`
     },} )
   .then(r  => r.json())
-  .then(json => dispatch({type: GET_ALL_CATEGORIES, payload: json}))
+  .then(json => formatCategoriesForDropDown(json, dispatch) )
 }
 
-export function helpGetNewCat(dispatch){
-   
+export function helpGetNewCat(dispatch){ 
     dispatch(getCategories())
+}
 
+function formatCategoriesForDropDown(json, dispatch){
+    const formatedCategoriesArray = json.map(category => ({ key: category.id, text: category.name, value: category.id }))
+    dispatch({type: GET_ALL_CATEGORIES, payload: formatedCategoriesArray})
+}
+
+export const addCategoryLocal = (category) => (dispatch)=>{
+    dispatch({type: ADD_CATEGORY, payload: category})
 }

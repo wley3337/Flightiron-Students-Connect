@@ -4,6 +4,8 @@ export * from './ViewActions'
 export * from './NoteActions'
 export * from './PublicNoteActions'
 export * from './FlashMessage'
+export * from './SearchTermActions'
+export * from './OwnerFocusActions'
 
 export const ROOT_URL = "http://127.0.0.1:3001"
 

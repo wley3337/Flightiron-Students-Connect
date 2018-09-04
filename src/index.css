@@ -9,12 +9,8 @@ body {
 /* background graphics  */
 
 .compass {
-  background-image: url(./Images/compass.jpg);
-  background-position: center;
+  background-color: rgba(3,64,120);
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   display: grid;
   grid-template-columns: 2% 18% 20% 20% 20% 18% 2%;
   grid-template-rows: 6.5% 10% 10% 10% 10% 10% 10% 10% 10% 10%; 
@@ -45,11 +41,16 @@ body {
 /* homescreen and buttons */
 
 #home-screen {
+  background-image: url(./Images/compass.jpg);
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 10% 10% 10% 10% 5% 10% 10% 10% 10% 10%;
+  grid-template-rows: 10% 10% 10% 10% 5% 10% 10% 10% 10% 10% 5%;
   justify-items: center;
 }
 
@@ -156,17 +157,19 @@ body {
 }
 
 #view-container {
+  /* height: 100vh; */
   grid-column-start: 1;
   grid-column-end: 8;
   grid-row-start: 2;
-  grid-row-end: 8;
+  grid-row-end: 12;
   display: grid;
-  grid-template-rows: 12% 12% 75%;
+  grid-template-rows: 6.5% 12% 81%;
   /* grid-auto-rows: 3fr; */
 }
 
 #view-nav-bar {
-  grid-row: 2;
+  justify-content: center;
+  grid-row: 1;
   text-align: center;
   display: grid;
 
@@ -184,9 +187,12 @@ body {
   grid-column-start: 4;
   grid-column-end: 5;
 } */
-
+#view-categories{
+  grid-row: 2;
+  display: flex;
+  /* overflow-y: auto; */
+}
 #view-new-category{
-  grid-row: 1;
   background-color: rgba(3,64,120,.8);
   color: #FEFCFB;
 }
@@ -197,12 +203,15 @@ body {
 } */
 #view-nav-bar > span{
   grid-column-start: 3;
-  grid-column-end: 4;
+  /* grid-column-end: 4; */
   grid-row: 1;
 }
 
-#view-note-area{
-  background-color: rgba(3,64,120,.8);
+#view-note-area {
+  margin: .5rem;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  background-color: rgba(37,206,209, .8);
   color: #FEFCFB;
   border-radius: 1rem;
 }
@@ -214,17 +223,22 @@ span > #text-bg-stnd {
 /* select area */
 
 #select-container {
+  height: 100vh;
+  width: 100vw;
   grid-column-start: 1;
   grid-column-end: 8;
-  grid-row-start: 8;
-  grid-row-end: 11;
+  grid-row-start: 1;
+  /* grid-row-end: 11; */
   display: grid;
-  grid-template-rows: 20% 80%;
+  grid-template-rows: 7% 90%;
 }
 
 #select-display-div{
+  grid-column-start: 1;
+  grid-row-start: 2;
 padding: 2%;
-background-color:  rgba(37,206,209, .2);
+background-color: black;
+ /* rgba(37,206,209, .2); */
 color: #FEFCFB;
 overflow-y: auto;
 border-radius: 1rem;

@@ -1,63 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
-import { Input, Menu, Segment } from 'semantic-ui-react'
+import ReactQuill from 'react-quill'
 
 class SelectionContainer extends React.Component {
-    state ={
-        activeItem: 'newNote',
-        activeCollection: [],
-        searchTerm: "",
-    }
-
-    // shouldComponentUpdate(){
-    //     let activeCollection;
-    //     switch(this.state.activeItem){
-    //        case "myNotes":
-    //         activeCollection = this.props.notes
-    //         break
-    //        case "publicNotes":
-    //          activeCollection= this.props.publicNotes
-    //          break
-    //        default:
-    //        []  
-    //    }
-    //     return this.state.activeCollection.length < activeCollection
-    // }
-
-    //sets the active collection based on menu item name. Uses store to populate the []
-    handleItemClick = (argument) =>{
-        this.setState({
-            activeItem: argument,
-           
-        })
-    }
+   
 
     handleItemFocus= (item) =>{
         this.props.setFocusNote(item)
     }
 
-    handleNewNoteClick = () =>{
-        this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
-        this.setState({
-            activeItem: 'newNote',
-            activeCollection: []
-        })
-    }
-
-    handleOnSearchChange = (e) =>{
-        this.setState({
-            searchTerm: e.target.value.toLowerCase()
-        })
-    }
-
     handleFilterSelectionOnSearch = () =>{
-        switch(this.state.activeItem){
+        switch(this.props.ownerFocus){
             case "myNotes":
-           return this.props.notes.filter(item => item.note.note_content.toLowerCase().includes(this.state.searchTerm))
+           return this.props.notes.filter(item => item.note.note_content.toLowerCase().includes(this.props.searchTerm))
 
             case "publicNotes":
-            return this.props.publicNotes.filter(item => item.note.note_content.toLowerCase().includes(this.state.searchTerm))
+            return this.props.publicNotes.filter(item => item.note.note_content.toLowerCase().includes(this.props.searchTerm))
     
             default:
            return []  
@@ -68,47 +27,19 @@ class SelectionContainer extends React.Component {
     render(){
         return(
             this.props.user ?
-                    <div id="select-container">
-                    <Menu >
-                        <Menu.Item
-                            name='newNote'
-                            active={this.state.activeItem === 'newNote'}
-                            onClick={this.handleNewNoteClick }
-                            value="newNote"
-                        />
-                        <Menu.Item 
-                            name='myNotes' 
-                            active={this.state.activeItem === 'myNotes'}
-                            onClick={() => this.handleItemClick("myNotes")} 
-                        />
-                        <Menu.Item
-                            name='publicNotes'
-                            active={this.state.activeItem === 'publicNotes'}
-                            onClick={() => this.handleItemClick("publicNotes")}
-                            value="publicNotes"
-                        />
-                   
-                        {/* <Menu.Menu position='right'> */}
-                            <Menu.Item>
-                                <Input 
-                                icon='search' 
-                                placeholder='Search...'
-                                onChange={this.handleOnSearchChange}
-                                />
-                            </Menu.Item>
-                        {/* </Menu.Menu> */}
-                    </Menu>
-            
                     <div id="select-display-div">
-                           
-                               { this.handleFilterSelectionOnSearch().map(item => 
-                                            <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
-                                                        {item.note.note_content.substring(0,50)}       
-                                            </p> )}
+                    
+                        { this.handleFilterSelectionOnSearch().map(item => 
+                                    <span onClick={()=> this.handleItemFocus(item)}key={item.note.id} >
+                                    <ReactQuill 
+                                        value={item.note.note_content.substring(0,50)}
+                                        theme="bubble"
+                                    /> 
+                                    </span>   
+                        )}
                                                                         
 
                     </div>
-                </div>
             :
             null
         )
@@ -120,9 +51,10 @@ const mapStateToProps = (state) => {
         categories: state.categories,
         notes: state.notes,
         user: state.currentUser,
-        publicNotes: state.publicNotes
+        publicNotes: state.publicNotes,
+        searchTerm: state.searchTerm,
+        ownerFocus: state.ownerFocus
      }
  }
     
-
 export default connect(mapStateToProps, actions) (SelectionContainer)

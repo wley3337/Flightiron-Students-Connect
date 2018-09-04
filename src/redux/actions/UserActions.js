@@ -74,8 +74,8 @@ export const updateUser = (data, userId) => (dispatch) => {
     dispatch({type: LOADING});
     const noteId = data.noteId;
     const noteObj = data.content;
-    const existingCategory = data.dropDownValueArray 
-    const newCategory = data.newCategory
+    const existingCategory = data.dropDownValueArray.filter(element => typeof(element) === "number")
+    const newCategory = data.dropDownValueArray.filter(element => typeof(element) === "string")
     const userObj= {user: {note: {userId: userId, noteId: noteId, noteObj: noteObj, categoryId: existingCategory, 
                                            newCategory: newCategory, public: data.public}}}
     fetch(ROOT_URL + "/users/my-page", {
