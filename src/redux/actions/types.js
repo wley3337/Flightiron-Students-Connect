@@ -25,3 +25,8 @@ export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES"
 //public note actions
 
 export const GET_ALL_PUBLIC_NOTES = "GET_ALL_PUBLIC_NOTES"
+
+//flash message
+
+export const SET_FLASH_MESSAGE = "SET_FLASH_MESSAGE"
+export const DELETE_FLASH_MESSAGE = "DELETE_FLASH_MESSAGE"

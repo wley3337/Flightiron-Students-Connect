@@ -13,6 +13,7 @@ class LoginForm extends Component {
     user: null
     }
 
+
  onChange = (e) =>{
     this.setState({
         [e.target.name]: e.target.value
@@ -21,6 +22,7 @@ class LoginForm extends Component {
 
  onSubmit= (e) =>{
     e.preventDefault()
+    this.props.deleteFlashMessage()
     this.props.userLogin(this.state.username, this.state.password)
  }
 
@@ -28,8 +30,9 @@ class LoginForm extends Component {
     return( 
         localStorage.getItem('token') ? <Redirect to="/my-page"/>  :
         <div id = "full-window">
+            
             <form onSubmit={this.onSubmit} id = "login-form">
-               
+            {this.props.flashMessage.length > 0 ? <p id="error-placement">Wrong username or password.</p> : null}
                 <input
                     type="text"
                     id="li-user-name"
@@ -66,7 +69,10 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps= (state) =>{
-    return {currentUser: state.currentUser}
+    return {
+        currentUser: state.currentUser,
+        flashMessage: state.flashMessage
+    }
 }
 
 export default connect(mapStateToProps, actions)(LoginForm)

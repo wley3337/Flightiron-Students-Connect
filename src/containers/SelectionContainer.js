@@ -27,20 +27,9 @@ class SelectionContainer extends React.Component {
 
     //sets the active collection based on menu item name. Uses store to populate the []
     handleItemClick = (argument) =>{
-        let activeCollection;
-         switch(argument){
-            case "myNotes":
-             activeCollection = this.props.notes
-             break
-            case "publicNotes":
-              activeCollection= this.props.publicNotes
-              break
-            default:
-            null   
-        }
         this.setState({
             activeItem: argument,
-            activeCollection: activeCollection
+           
         })
     }
 
@@ -63,10 +52,18 @@ class SelectionContainer extends React.Component {
     }
 
     handleFilterSelectionOnSearch = () =>{
-      return  this.state.activeCollection.filter(item => item.note.note_content.toLowerCase().includes(this.state.searchTerm))
+        switch(this.state.activeItem){
+            case "myNotes":
+           return this.props.notes.filter(item => item.note.note_content.toLowerCase().includes(this.state.searchTerm))
+
+            case "publicNotes":
+            return this.props.publicNotes.filter(item => item.note.note_content.toLowerCase().includes(this.state.searchTerm))
+    
+            default:
+           return []  
+
+        }
     }
-
-
 
     render(){
         return(
@@ -104,9 +101,10 @@ class SelectionContainer extends React.Component {
             
                     <div id="select-display-div">
                            
-                               { this.handleFilterSelectionOnSearch().map(item => <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
-                                                                        {item.note.note_content.substring(0,50)}       
-                                                                         </p> )}
+                               { this.handleFilterSelectionOnSearch().map(item => 
+                                            <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
+                                                        {item.note.note_content.substring(0,50)}       
+                                            </p> )}
                                                                         
 
                     </div>

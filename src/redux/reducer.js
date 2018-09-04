@@ -90,6 +90,20 @@ const publicNoteReducer = (state =[], action) =>{
     }
 }
 
+const flashMessageReducer =(state=[], action) =>{
+    switch(action.type){
+        
+        case "SET_FLASH_MESSAGE":
+        return [action.payload]
+
+        case "DELETE_FLASH_MESSAGE":
+        return []
+
+        default:
+        return state
+    }
+}
+
 
 
 const reducers ={
@@ -97,7 +111,8 @@ const reducers ={
     view: viewReducer,
     notes: notesReducer,
     categories: categoryReducer,
-    publicNotes: publicNoteReducer
+    publicNotes: publicNoteReducer,
+    flashMessage: flashMessageReducer
 }
 
 export default combineReducers(reducers)

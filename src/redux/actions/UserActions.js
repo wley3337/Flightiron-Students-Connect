@@ -1,6 +1,6 @@
 import { LOADING, SET_CURRENT_USER, LOGOUT} from './types'
 import {helpGetNewCat} from './CategoryActions'
-
+import {setFlashMessage} from './FlashMessage'
 import { ROOT_URL } from './index'
 
 
@@ -29,7 +29,7 @@ export function setUser(json, dispatch){
     }else if(json["success"]){
         dispatch({type: SET_CURRENT_USER, payload: json["userObj"]})
     }else{
-        alert("Wrong username/password")
+       dispatch(setFlashMessage(json))
     }
 } 
 
