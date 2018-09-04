@@ -36,7 +36,7 @@ class CreateUserForm extends Component {
      const errorMessages = this.props.flashMessage[0].errors;
      let blankError;
      const usernameTaken =
-        !errorMessages.username[0].includes("can't") ? "Username has already been taken" : null;
+        !errorMessages.username[0].includes("can't") ? "Username has already been taken." : null;
      const usernameBlank = 
             errorMessages.username[0].includes("can't") ? true : false;
      if(usernameBlank || errorMessages.password_name || errorMessages.first_name || errorMessages.last_name){
