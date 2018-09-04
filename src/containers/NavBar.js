@@ -26,6 +26,7 @@ class NavBar extends React.Component {
           const noteId = this.props.view.noteId
           const noteInfo={ id: noteId }
           this.props.deleteNote({note: noteInfo})
+          this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
         }else{
             this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
         }

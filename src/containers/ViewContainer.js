@@ -75,8 +75,9 @@ class ViewContainer extends React.Component{
                                       
                                     </div>
                                     <textarea 
-                                    className="text-bg-stnd"
+                                    id ="view-note-area"
                                     name="content" 
+                                    placeholder="Thoughts on the subject"
                                     value={this.props.view.content} onChange={(e) =>{this.props.updateNoteContent(e.target.value)}}/>
                                     
                                 </div>

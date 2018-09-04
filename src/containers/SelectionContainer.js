@@ -71,8 +71,8 @@ class SelectionContainer extends React.Component {
     render(){
         return(
             this.props.user ?
-                    <div>
-                    <Menu pointing>
+                    <div id="select-container">
+                    <Menu >
                         <Menu.Item
                             name='newNote'
                             active={this.state.activeItem === 'newNote'}
@@ -91,7 +91,7 @@ class SelectionContainer extends React.Component {
                             value="publicNotes"
                         />
                    
-                        <Menu.Menu position='right'>
+                        {/* <Menu.Menu position='right'> */}
                             <Menu.Item>
                                 <Input 
                                 icon='search' 
@@ -99,17 +99,17 @@ class SelectionContainer extends React.Component {
                                 onChange={this.handleOnSearchChange}
                                 />
                             </Menu.Item>
-                        </Menu.Menu>
+                        {/* </Menu.Menu> */}
                     </Menu>
             
-                    <Segment>
+                    <div id="select-display-div">
                            
                                { this.handleFilterSelectionOnSearch().map(item => <p key={item.note.id}onClick={()=> this.handleItemFocus(item)}>
                                                                         {item.note.note_content.substring(0,50)}       
                                                                          </p> )}
                                                                         
 
-                    </Segment>
+                    </div>
                 </div>
             :
             null
