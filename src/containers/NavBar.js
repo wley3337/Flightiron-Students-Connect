@@ -14,11 +14,10 @@ class NavBar extends React.Component {
         })
     }
     
-    handleLogOut = (e) =>{
+    handleLogOut = (e) =>{    
         this.handleItemClick(e)
         this.props.logoutUser()
-        this.props.history.push('/')
-
+        // this.context.history.push({pathname: '/'})
     }
 
     handleDelete = () =>{
