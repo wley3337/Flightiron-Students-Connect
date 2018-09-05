@@ -37,6 +37,10 @@ export const DELETE_FLASH_MESSAGE = "DELETE_FLASH_MESSAGE"
 
 export const SET_SEARCH_TERM = "SET_SEARCH_TERM"
 
+//search category
+
+export const SET_SEARCH_CATEGORY_ID= "SET_SEARCH_CATEGORY_ID"
+
 //owner focus
 
 export const SET_OWNER_FOCUS = "SET_OWNER_FOCUS"

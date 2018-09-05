@@ -115,7 +115,19 @@ const searchTermReducer = (state ="", action) =>{
         return state
     }
 }
-const ownerFocusReducer = (state ="", action) =>{
+
+const searchCategoryIdReducer = (state="", action) => {
+    switch(action.type){
+        
+        case "SET_SEARCH_CATEGORY_ID":
+        return action.payload
+
+        default:
+        return state 
+    }
+}
+
+const ownerFocusReducer = (state ="myNotes", action) =>{
     switch(action.type){
         case "SET_OWNER_FOCUS":
         return action.payload
@@ -127,6 +139,8 @@ const ownerFocusReducer = (state ="", action) =>{
 
 
 
+
+
 const reducers ={
     currentUser: currentUserReducer,
     view: viewReducer,
@@ -135,7 +149,8 @@ const reducers ={
     publicNotes: publicNoteReducer,
     flashMessage: flashMessageReducer,
     searchTerm: searchTermReducer,
-    ownerFocus: ownerFocusReducer
+    ownerFocus: ownerFocusReducer,
+    searchCategoryId: searchCategoryIdReducer
 }
 
 export default combineReducers(reducers)

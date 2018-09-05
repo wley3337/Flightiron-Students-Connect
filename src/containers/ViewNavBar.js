@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Label, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
+import { Link} from 'react-router-dom'
 
 class ViewNavBar extends React.Component {
     state ={
@@ -27,6 +28,7 @@ class ViewNavBar extends React.Component {
     }
 
     handleSave = () =>{
+        this.props.setOwnerFocus('myNotes')
         this.props.updateUser(this.props.view, this.props.user.id)
     }
 
@@ -53,8 +55,10 @@ class ViewNavBar extends React.Component {
                 </Menu.Item>                   
                 <Menu.Item
                 name='save'
-                active={activeItem === 'upcomingEvents'}
+                active={activeItem === 'save'}
                 onClick={this.handleSave}
+                as={Link}
+                to="/select/public-notes"
                 >
                 Save
                 </Menu.Item>

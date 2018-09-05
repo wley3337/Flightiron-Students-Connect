@@ -2,15 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 import { Input, Menu } from 'semantic-ui-react'
-import { Route } from 'react-router-dom'
+import { Route, Link} from 'react-router-dom'
 
 import SelectionContainer from './SelectionContainer'
 
 class NavBar extends React.Component {
 
-    state ={
-        activeItem: 'newNote'
-    }
+   
 
     componentDidMount(){
         
@@ -34,9 +32,7 @@ class NavBar extends React.Component {
 
     handleNewNoteClick = () =>{
         this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
-        this.setState({
-            activeItem: 'newNote',
-        })
+        this.handleItemClick('newNote')
     }
 
     handleOnSearchChange = (e) =>{
@@ -55,43 +51,37 @@ class NavBar extends React.Component {
     render(){
         return(
             this.props.user ?
-                    <div id="select-container">
+                    <div id="navbar-container">
                     <Menu >
                         <Menu.Item
                             name='logout'
-                            active={this.state.activeItem === 'logout'}
+                            active={this.props.ownerFocus === 'logout'}
                             onClick={this.handleLogOut}
                         />  
                         <Menu.Item
                             name='newNote'
-                            active={this.state.activeItem === 'newNote'}
+                            active={this.props.ownerFocus === 'newNote'}
                             onClick={this.handleNewNoteClick }
                             value="newNote"
+                            as={ Link }
+                            to="/select/my-page"
                         />
                         <Menu.Item 
                             name='myNotes' 
-                            active={this.state.activeItem === 'myNotes'}
+                            active={this.props.ownerFocus === 'myNotes'}
                             onClick={() => this.handleItemClick("myNotes")} 
+                            as={ Link }
+                            to="/select/public-notes"
                         />
                         <Menu.Item
                             name='publicNotes'
-                            active={this.state.activeItem === 'publicNotes'}
+                            active={this.props.ownerFocus === 'publicNotes'}
                             onClick={() => this.handleItemClick("publicNotes")}
                             value="publicNotes"
+                            as={ Link }
+                            to="/select/public-notes"
                         />
-                   
-                        {/* <Menu.Menu position='right'> */}
-                            {/* <Menu.Item>
-                                <Input 
-                                icon='search' 
-                                placeholder='Search...'
-                                onChange={this.handleOnSearchChange}
-                                />
-                            </Menu.Item> */}
-                        {/* </Menu.Menu> */}
                     </Menu>
-                   
-                  <Route exact path="/select" component={SelectionContainer}/>
                 </div>
             :
             null
@@ -104,7 +94,8 @@ const mapStateToProps = (state) => {
         categories: state.categories,
         notes: state.notes,
         user: state.currentUser,
-        publicNotes: state.publicNotes
+        publicNotes: state.publicNotes,
+        ownerFocus: state.ownerFocus
      }
  }
     

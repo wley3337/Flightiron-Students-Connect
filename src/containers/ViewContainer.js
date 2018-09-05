@@ -58,7 +58,7 @@ class ViewContainer extends React.Component{
                                     {this.props.categories ?
                                         <Dropdown 
                                             className="text-bg-stnd"
-                                            placeholder='Categories' 
+                                            placeholder='Type to search categories or to add a new one' 
                                             fluid 
                                             multiple
                                             search 
@@ -85,14 +85,14 @@ class ViewContainer extends React.Component{
                                         /> */}
                                       
                                     </span>
+                                    <div id="view-note-area">
                                     <ReactQuill 
-                                        id="view-note-area"
-                                        // style="view-note-area"
+                                        id="view-quill-area"
                                         theme="snow" 
-                                        // modules={this.toolBarModuels}
                                         value={this.props.view.content} 
                                         onChange={(value) =>{this.props.updateNoteContent(value)}} 
                                     />
+                                    </div>
                         </div>
                         
                     :   

@@ -47,7 +47,7 @@ class CreateUserForm extends Component {
 
  render(){
     return( 
-        localStorage.getItem('token') ? <Redirect to="/select"/> :
+        localStorage.getItem('token') ? <Redirect to="/select/public-notes"/> :
         <form onSubmit={this.onSubmit} id="form-style" >
              {this.props.flashMessage.length > 0 ?  
                 <div id="error-placement">
