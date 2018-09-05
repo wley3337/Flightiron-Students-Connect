@@ -57,6 +57,8 @@ class NavBar extends React.Component {
                             name='logout'
                             active={this.props.ownerFocus === 'logout'}
                             onClick={this.handleLogOut}
+                            as={ Link }
+                            to="/"
                         />  
                         <Menu.Item
                             name='newNote'

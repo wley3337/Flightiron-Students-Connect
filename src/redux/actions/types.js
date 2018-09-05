@@ -40,6 +40,7 @@ export const SET_SEARCH_TERM = "SET_SEARCH_TERM"
 //search category
 
 export const SET_SEARCH_CATEGORY_ID= "SET_SEARCH_CATEGORY_ID"
+export const CLEAR_SEARCH_CATEGORY_ID = "CLEAR_SEARCH_CATEGORY_ID"
 
 //owner focus
 

@@ -55,6 +55,7 @@ body {
 }
 
 #login {
+
   grid-column-start: 2;
   grid-column-end: 5;
   grid-row-start: 6;
@@ -62,7 +63,7 @@ body {
 }
 
 #create-account {
-
+  
   grid-column-start: 2;
   grid-column-end: 5;
   grid-row-start: 4;
@@ -72,6 +73,11 @@ body {
 
 /* login form */
 #full-window{
+  background-image: url(./Images/compass.jpg);
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
   display: grid;
@@ -113,6 +119,11 @@ body {
  /* uses li-username li-password from above */
 
 #form-style {
+  background-image: url(./Images/compass.jpg);
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
   display: grid;
@@ -175,35 +186,20 @@ body {
 
 }
 
-/* #view-delete{
-  color:#D7263D;
-  background-color:  #034078;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row: 1;
-} */
 
-/* #view-public{
-  grid-column-start: 4;
-  grid-column-end: 5;
-} */
 #view-categories{
   grid-row: 2;
   display: flex;
-  /* overflow-y: auto; */
+  
 }
 #view-new-category{
   background-color: rgba(3,64,120,.8);
   color: #FEFCFB;
 }
-/* #view-save{
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row: 1;
-} */
+
 #view-nav-bar > span{
   grid-column-start: 3;
-  /* grid-column-end: 4; */
+ 
   grid-row: 1;
 }
 
@@ -232,7 +228,6 @@ body {
   border: none;
 }
 .ql-toolbar.ql-snow {
-  /* border:  rgba(37,206,209, .8); */
   border-radius: 1rem;
 }
 
@@ -278,10 +273,28 @@ span > #text-bg-stnd {
   display: grid;
   grid-template-columns: 50% 50%;
 }
-#select-search-bar-dropdown{
+#select-search-bar-dropdown-container{
   grid-column-start: 1;
   grid-column-end: 2;
+  display: grid;
+  justify-content: center;
 }
+#select-search-bar-dropdown{
+  border:s black;
+  
+  background-color:  rgba(37,206,209, .2);
+  color: #FEFCFB;
+  border-radius: 1rem;
+}
+
+#select-search-bar-button{
+  background-color: rgba(37,206,209, .2);
+  color: #FEFCFB;
+  border-radius: 1rem;
+  margin-top: .2rem;
+  /* border: black; */
+}
+
 #select-search-bar-input{
   grid-column-start: 2;
   grid-column-end: 3;

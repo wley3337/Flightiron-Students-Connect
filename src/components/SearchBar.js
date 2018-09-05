@@ -12,16 +12,22 @@ class SearchBar extends React.Component {
                 
                
             {this.props.categories ?
-                <Dropdown 
-                    id="select-search-bar-dropdown"
-                    className="text-bg-stnd"
-                    placeholder='Type to search categories' 
-                    search 
-                    selection 
-                    options= {this.props.categories}
-                    value={this.props.searchCategoryId}
-                    onChange={(e,value) => this.props.setSearchCategoryId(value.value)}
-                />
+                <span id="select-search-bar-dropdown-container">
+                    <Dropdown 
+                        id="select-search-bar-dropdown"
+                        className="text-bg-stnd"
+                        placeholder='Type to search categories' 
+                        search 
+                        selection 
+                        options= {this.props.categories}
+                        value={this.props.searchCategoryId}
+                        onChange={(e,value) => this.props.setSearchCategoryId(value.value)}
+                    />
+                    <button 
+                        id="select-search-bar-button"
+                        onClick={this.props.clearSearchCategoryId}
+                    >Clear Category</button>
+                </span>
             :   null}
         
             <Input

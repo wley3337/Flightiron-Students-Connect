@@ -122,6 +122,9 @@ const searchCategoryIdReducer = (state="", action) => {
         case "SET_SEARCH_CATEGORY_ID":
         return action.payload
 
+        case "CLEAR_SEARCH_CATEGORY_ID":
+        return ""
+        
         default:
         return state 
     }
