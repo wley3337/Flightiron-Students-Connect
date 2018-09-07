@@ -7,7 +7,7 @@ import HomeScreenButtons from '../components/HomeScreenButtons';
 import ViewContainer from './ViewContainer';
 import SelectionContainer from './SelectionContainer'
 import NavBar from './NavBar'
-
+import ReferenceContainer from './ReferenceContainer'
 import { Route } from 'react-router-dom'
 
 class App extends Component {
@@ -24,10 +24,10 @@ class App extends Component {
             <Route exact path="/my-page" render={() =>  <ViewContainer/> }/>
             <Route exact path="/my-page" render={() =>  <SelectionContainer/> }/> */}
 
-             <Route path="/select" render={() => <NavBar/>} />
+            <Route path="/select" render={() => <NavBar/>} />
             <Route exact path="/select/my-page" render={() =>  <ViewContainer/> }/>
-            <Route exact path="/select/public-notes" render={() =>  <SelectionContainer/> }/>
-          
+            <Route exact path="/select/notes" render={() =>  <SelectionContainer/> }/>
+            <Route exact path="/select/references" render={() => <ReferenceContainer/>}/>
       </div>
     );
   }

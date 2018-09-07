@@ -185,6 +185,16 @@ body {
   display: grid;
 
 }
+#navbar-dropdown-menu{
+  border-radius: 1rem;
+  background-color: rgba(37,206,209);
+  color: #FEFCFB;
+}
+
+/* .navbar-dropdown-text{
+  background-color: rgba(3,64,120,.8);
+  color: #FEFCFB;
+} */
 
 
 #view-categories{
@@ -291,22 +301,24 @@ span > #text-bg-stnd {
   background-color: rgba(37,206,209, .2);
   color: #FEFCFB;
   border-radius: 1rem;
-  margin-top: .2rem;
+  margin: .2rem;
   /* border: black; */
 }
 
 #select-search-bar-input{
   grid-column-start: 2;
   grid-column-end: 3;
+  padding: .2rem;
+  margin: .2rem;
 }
 
 
 #select-display-div{
- 
+  margin: .3rem;
   grid-row-start: 3;
   grid-row-end: 11;
   padding: .5rem;
-  margin-left: .3rem;
+  /* margin-left: .3rem; */
   width: 98vw;
   background-color: rgba(37,206,209, .2);
   color: #FEFCFB;

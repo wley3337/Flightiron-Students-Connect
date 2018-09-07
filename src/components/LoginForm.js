@@ -28,7 +28,7 @@ class LoginForm extends Component {
 
  render(){
     return( 
-        localStorage.getItem('token') ? <Redirect to="/select/public-notes"/>  :
+        localStorage.getItem('token') ? <Redirect to="/select/notes"/>  :
         <div id = "full-window">
             
             <form onSubmit={this.onSubmit} id = "login-form">

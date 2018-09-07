@@ -58,7 +58,7 @@ class ViewNavBar extends React.Component {
                 active={activeItem === 'save'}
                 onClick={this.handleSave}
                 as={Link}
-                to="/select/public-notes"
+                to="/select/notes"
                 >
                 Save
                 </Menu.Item>

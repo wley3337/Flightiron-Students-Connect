@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
-import { Input, Menu } from 'semantic-ui-react'
+import { Input, Menu, Dropdown, MenuItem } from 'semantic-ui-react'
 import { Route, Link} from 'react-router-dom'
 
 import SelectionContainer from './SelectionContainer'
 
 class NavBar extends React.Component {
-
+   
    
 
     componentDidMount(){
@@ -59,29 +59,50 @@ class NavBar extends React.Component {
                             onClick={this.handleLogOut}
                             as={ Link }
                             to="/"
-                        />  
-                        <Menu.Item
-                            name='newNote'
-                            active={this.props.ownerFocus === 'newNote'}
-                            onClick={this.handleNewNoteClick }
-                            value="newNote"
+                        /> 
+                       
+                        <Dropdown text="Notes" pointing className='link item'>
+                         <Dropdown.Menu id="navbar-dropdown-menu">
+                            <Dropdown.Item
+                                name='newNote'
+                                text="New Note"
+                                className="navbar-dropdown-text"
+                                active={this.props.ownerFocus === 'newNote'}
+                                onClick={this.handleNewNoteClick }
+                                value="newNote"
+                                as={ Link }
+                                to="/select/my-page"
+                            />
+                            <Dropdown.Item 
+                                name='myNotes' 
+                                text="My Notes"
+                                className="navbar-dropdown-text"
+                                active={this.props.ownerFocus === 'myNotes'}
+                                onClick={() => this.handleItemClick("myNotes")}
+                                value="newNotes" 
+                                as={ Link }
+                                to="/select/notes"
+                            />
+                            <Dropdown.Item
+                                name='publicNotes'
+                                text="Public Notes"
+                                className="navbar-dropdown-text"
+                                active={this.props.ownerFocus === 'publicNotes'}
+                                onClick={() => this.handleItemClick("publicNotes")}
+                                value="publicNotes"
+                                as={ Link }
+                                to="/select/notes"
+                            />
+                            </Dropdown.Menu>
+                        </Dropdown>
+                       
+                         <Menu.Item
+                            name='references'
+                            active={this.props.ownerFocus === 'references'}
+                            onClick={() => this.handleItemClick("references")}
+                            value="references"
                             as={ Link }
-                            to="/select/my-page"
-                        />
-                        <Menu.Item 
-                            name='myNotes' 
-                            active={this.props.ownerFocus === 'myNotes'}
-                            onClick={() => this.handleItemClick("myNotes")} 
-                            as={ Link }
-                            to="/select/public-notes"
-                        />
-                        <Menu.Item
-                            name='publicNotes'
-                            active={this.props.ownerFocus === 'publicNotes'}
-                            onClick={() => this.handleItemClick("publicNotes")}
-                            value="publicNotes"
-                            as={ Link }
-                            to="/select/public-notes"
+                            to="/select/references"
                         />
                     </Menu>
                 </div>
