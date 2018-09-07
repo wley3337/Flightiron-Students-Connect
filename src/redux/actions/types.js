@@ -2,12 +2,12 @@
 //user actions
 export const LOADING = "LOADING"
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
+
 // export const CREATE_USER = "CREATE_USER"
 export const LOGOUT = "LOGOUT"
 
 //note actions
 export const DELETE_NOTE = "DELETE_NOTE"
-
 
 //view actions
 export const SET_FOCUS_NOTE = "SET_FOCUS_NOTE"
@@ -16,32 +16,29 @@ export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES"
 export const UPDATE_NOTE_CONTENT = "UPDATE_NOTE_CONTENT"
 export const UPDATE_NEW_CATEGORY = "UPDATE_NEW_CATEGORY"
 
-
-
-
 //category actions
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES"
 export const ADD_CATEGORY = "ADD_CATEGORY"
 
 //public note actions
-
 export const GET_ALL_PUBLIC_NOTES = "GET_ALL_PUBLIC_NOTES"
 
 //flash message
-
 export const SET_FLASH_MESSAGE = "SET_FLASH_MESSAGE"
 export const DELETE_FLASH_MESSAGE = "DELETE_FLASH_MESSAGE"
 
 
 //search term
-
 export const SET_SEARCH_TERM = "SET_SEARCH_TERM"
 
 //search category
-
 export const SET_SEARCH_CATEGORY_ID= "SET_SEARCH_CATEGORY_ID"
 export const CLEAR_SEARCH_CATEGORY_ID = "CLEAR_SEARCH_CATEGORY_ID"
 
 //owner focus
-
 export const SET_OWNER_FOCUS = "SET_OWNER_FOCUS"
+
+//reference
+export const SET_REFERENCE_SEARCH_CATEGORY_ID = "SET_REFERENCE_SEARCH_CATEGORY_ID"
+export const CLEAR_REFERENCE_SEARCH_CATEGORY_ID = "CLEAR_REFERENCE_SEARCH_CATEGORY_ID"
+export const REFERENCE_SEARCH_RESULTS = "REFERENCE_SEARCH_RESULTS"

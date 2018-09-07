@@ -27,7 +27,7 @@ class ReferenceSearchBar extends React.Component{
         if(localStorage.getItem('token')){
         this.props.getCategories()
         this.props.getUser()
-        this.props.getAllPublicNotes()
+        this.props.getAllPublicNotes(this.props.noteOffsetId)
         }
       
     }
@@ -84,7 +84,8 @@ const mapStateToProps = (state) => {
        categories: state.categories,
        notes: state.notes,
        user: state.currentUser,
-       view: state.view
+       view: state.view,
+       noteOffsetId: state.noteOffsetId
     }
 }
 

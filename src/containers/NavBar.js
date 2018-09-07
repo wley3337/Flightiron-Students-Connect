@@ -15,7 +15,7 @@ class NavBar extends React.Component {
         if(localStorage.getItem('token')){
         this.props.getCategories()
         this.props.getUser()
-        this.props.getAllPublicNotes()
+        this.props.getAllPublicNotes(this.props.noteOffsetId)
         }
       
     }
@@ -118,7 +118,8 @@ const mapStateToProps = (state) => {
         notes: state.notes,
         user: state.currentUser,
         publicNotes: state.publicNotes,
-        ownerFocus: state.ownerFocus
+        ownerFocus: state.ownerFocus,
+        noteOffsetId: state.noteOffsetId
      }
  }
     

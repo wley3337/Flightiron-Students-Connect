@@ -1,20 +1,21 @@
 import { combineReducers } from 'redux';
+import { LOADING, SET_CURRENT_USER, LOGOUT, DELETE_NOTE, SET_FOCUS_NOTE, UPDATE_PUBLIC,
+         UPDATE_CATEGORIES, UPDATE_NOTE_CONTENT, UPDATE_NEW_CATEGORY, GET_ALL_CATEGORIES,
+         ADD_CATEGORY, GET_ALL_PUBLIC_NOTES, SET_FLASH_MESSAGE, DELETE_FLASH_MESSAGE, 
+         SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID} from './actions/types'
 
 
 
 const currentUserReducer =( state = null, action ) =>{
 
     switch(action.type){
-        case "LOADING":
+        case LOADING:
         return state
         
-        case "SET_CURRENT_USER":
+        case SET_CURRENT_USER:
         return action.payload
-        
-        // case "CREATE_USER":
-        // return state
 
-        case "LOGOUT":
+        case LOGOUT:
         return null
 
         default:
@@ -28,21 +29,21 @@ const viewReducer = (state = {noteId: null, content: "", dropDownValueArray: [],
     // {note: {noteId: null, note_content: "", public_note: false, user.id: null}, categories: []}
     switch(action.type){
 
-        case "SET_FOCUS_NOTE":
+        case SET_FOCUS_NOTE:
         const {note, categories} = action.payload
 
         return {content: note.note_content, dropDownValueArray: categories.map(cat => cat.id), public: note.public_note, noteUserId: note.user_id, noteId: note.id, newCategory: ""}
 
-        case "UPDATE_CATEGORIES":
+        case UPDATE_CATEGORIES:
         return {...state, dropDownValueArray: action.payload}
 
-        case "UPDATE_NOTE_CONTENT":
+        case UPDATE_NOTE_CONTENT:
         return {...state, content: action.payload}
 
-        case "UPDATE_PUBLIC":
+        case UPDATE_PUBLIC:
         return {...state, public: !action.payload}
 
-        case "UPDATE_NEW_CATEGORY":
+        case UPDATE_NEW_CATEGORY:
         return {...state, newCategory: action.payload}
      
         default:
@@ -54,13 +55,10 @@ const viewReducer = (state = {noteId: null, content: "", dropDownValueArray: [],
 const notesReducer = (state = [], action) =>{
     switch(action.type){
 
-        case "SET_CURRENT_USER":
-        // const newCollection =[...state, ...action.payload.notes]
-        // return [...new Set(newCollection)]
+        case SET_CURRENT_USER:
         return  action.payload.notes 
-        // return [...state, action.payload.notes][0]
-
-        case "LOGOUT":
+     
+        case LOGOUT:
         return []
 
         default:
@@ -71,10 +69,10 @@ const notesReducer = (state = [], action) =>{
 const categoryReducer = (state =[], action) =>{
     switch(action.type){
         
-        case "GET_ALL_CATEGORIES":
+        case GET_ALL_CATEGORIES:
         return action.payload
 
-        case "ADD_CATEGORY":
+        case ADD_CATEGORY:
         return [...state, action.payload]
 
         default:
@@ -85,21 +83,33 @@ const categoryReducer = (state =[], action) =>{
 const publicNoteReducer = (state =[], action) =>{
     switch(action.type){
 
-        case "GET_ALL_PUBLIC_NOTES":
-        return action.payload
+        case GET_ALL_PUBLIC_NOTES:
+        return action.payload.notes
 
         default:
         return state
     }
 }
 
+const moreNotesReducer = (state = false, action) =>{
+    switch(action.type){
+
+        case GET_ALL_PUBLIC_NOTES:
+        return action.payload.more
+
+        default:
+        return state
+    }
+
+}
+
 const flashMessageReducer =(state=[], action) =>{
     switch(action.type){
         
-        case "SET_FLASH_MESSAGE":
+        case SET_FLASH_MESSAGE:
         return [action.payload]
 
-        case "DELETE_FLASH_MESSAGE":
+        case DELETE_FLASH_MESSAGE:
         return []
 
         default:
@@ -109,21 +119,79 @@ const flashMessageReducer =(state=[], action) =>{
 
 const searchTermReducer = (state ="", action) =>{
     switch(action.type){
-        case "SET_SEARCH_TERM":
+        case SET_SEARCH_TERM:
         return action.payload
         default:
         return state
     }
 }
 
+const notesOffsetIdReducer =(state = 0, action)=>{
+    switch(action.type){
+
+
+        default:
+        return state
+    }
+}
+
+const referenceOffsetIdReducer =(state = 0, action)=>{
+    switch(action.type){
+
+
+        default:
+        return state
+    }
+}
+
+//this is for notes
 const searchCategoryIdReducer = (state="", action) => {
     switch(action.type){
         
-        case "SET_SEARCH_CATEGORY_ID":
+        case SET_SEARCH_CATEGORY_ID:
         return action.payload
 
-        case "CLEAR_SEARCH_CATEGORY_ID":
+        case CLEAR_SEARCH_CATEGORY_ID:
         return ""
+        
+        default:
+        return state 
+    }
+}
+
+const referenceSearchCategoryIdReducer = (state="", action) => {
+    switch(action.type){
+        
+        case SET_REFERENCE_SEARCH_CATEGORY_ID:
+        return action.payload
+
+        case CLEAR_REFERENCE_SEARCH_CATEGORY_ID:
+        return ""
+        
+        default:
+        return state 
+    }
+}
+const moreReferencesReducer = (state = false, action) =>{
+    switch(action.type){
+
+        // case GET_ALL_PUBLIC_NOTES:
+        // return action.payload.more
+
+        default:
+        return state
+    }
+
+}
+
+const referenceSearchResultsIdReducer = (state="", action) => {
+    switch(action.type){
+        
+        // case SET_REFERENCE_SEARCH_CATEGORY_ID:
+        // return action.payload
+
+        // case CLEAR_REFERENCE_SEARCH_CATEGORY_ID:
+        // return ""
         
         default:
         return state 
@@ -132,7 +200,8 @@ const searchCategoryIdReducer = (state="", action) => {
 
 const ownerFocusReducer = (state ="myNotes", action) =>{
     switch(action.type){
-        case "SET_OWNER_FOCUS":
+
+        case SET_OWNER_FOCUS:
         return action.payload
 
         default:
@@ -153,7 +222,13 @@ const reducers ={
     flashMessage: flashMessageReducer,
     searchTerm: searchTermReducer,
     ownerFocus: ownerFocusReducer,
-    searchCategoryId: searchCategoryIdReducer
+    searchCategoryId: searchCategoryIdReducer,
+    noteOffsetId: notesOffsetIdReducer,
+    referenceOffsetId: referenceOffsetIdReducer,
+    referenceSearchCategoryId: referenceSearchCategoryIdReducer,
+    moreNotes: moreNotesReducer,
+    moreReferences: moreReferencesReducer,
+    referenceSearchResultsId: referenceSearchResultsIdReducer
 }
 
 export default combineReducers(reducers)
