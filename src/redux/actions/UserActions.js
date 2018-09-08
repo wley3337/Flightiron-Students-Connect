@@ -50,9 +50,10 @@ export const createUser= (submitData) => (dispatch) => {
 } 
 
 
-export const logoutUser = () => (dispatch) => {
-    dispatch({type: LOGOUT})
+export const logoutUser = () => {
+   
     localStorage.clear()
+    return  {type: LOGOUT}
 }
 
 export const getUser = () => (dispatch) => {

@@ -19,5 +19,4 @@ import { ROOT_URL } from './index'
     .then(json => setUser(json, dispatch))
 
 
-
  }

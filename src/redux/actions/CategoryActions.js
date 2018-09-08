@@ -1,4 +1,4 @@
-import { LOADING,  GET_ALL_CATEGORIES, ADD_CATEGORY } from './types'
+import { LOADING,  GET_ALL_CATEGORIES, ADD_CATEGORY} from './types'
 
 import { ROOT_URL } from './index'
 
@@ -24,6 +24,6 @@ function formatCategoriesForDropDown(json, dispatch){
     dispatch({type: GET_ALL_CATEGORIES, payload: formatedCategoriesArray})
 }
 
-export const addCategoryLocal = (category) => (dispatch)=>{
-    dispatch({type: ADD_CATEGORY, payload: category})
-}
+export const addCategoryLocal = (category) => ({type: ADD_CATEGORY, payload: category})
+
+// export const addReferenceCategoryLocal = (category)=> ({type: ADD_RREFERENCE_CATEGORY, payload: category})

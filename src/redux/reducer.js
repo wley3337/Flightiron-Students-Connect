@@ -2,9 +2,7 @@ import { combineReducers } from 'redux';
 import { LOADING, SET_CURRENT_USER, LOGOUT, DELETE_NOTE, SET_FOCUS_NOTE, UPDATE_PUBLIC,
          UPDATE_CATEGORIES, UPDATE_NOTE_CONTENT, UPDATE_NEW_CATEGORY, GET_ALL_CATEGORIES,
          ADD_CATEGORY, GET_ALL_PUBLIC_NOTES, SET_FLASH_MESSAGE, DELETE_FLASH_MESSAGE, 
-         SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID} from './actions/types'
-
-
+         SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID, REFERENCE_SEARCH_RESULTS, SET_REFERENCE_TITLE, SET_REFERENCE_LINK, UPDATE_REFERENCE_CATEGORIES, CLEAR_NEW_REFERENCE} from './actions/types'
 
 const currentUserReducer =( state = null, action ) =>{
 
@@ -79,6 +77,8 @@ const categoryReducer = (state =[], action) =>{
         return state
     }
 }
+
+
 
 const publicNoteReducer = (state =[], action) =>{
     switch(action.type){
@@ -172,11 +172,24 @@ const referenceSearchCategoryIdReducer = (state="", action) => {
         return state 
     }
 }
+
+// const referenceCategoryReducer = (state = [], action) =>{
+//     switch(action.type){
+//         case ADD_RREFERENCE_CATEGORY:
+
+//         return [...state, action.payload]
+
+//         default:
+//         return state
+//     }
+// }
+
+
 const moreReferencesReducer = (state = false, action) =>{
     switch(action.type){
 
-        // case GET_ALL_PUBLIC_NOTES:
-        // return action.payload.more
+        case REFERENCE_SEARCH_RESULTS:
+        return action.payload.more
 
         default:
         return state
@@ -184,18 +197,37 @@ const moreReferencesReducer = (state = false, action) =>{
 
 }
 
-const referenceSearchResultsIdReducer = (state="", action) => {
+const referenceSearchResultsIdReducer = (state=[], action) => {
     switch(action.type){
         
-        // case SET_REFERENCE_SEARCH_CATEGORY_ID:
-        // return action.payload
-
-        // case CLEAR_REFERENCE_SEARCH_CATEGORY_ID:
-        // return ""
+        case REFERENCE_SEARCH_RESULTS:
+        return action.payload.references
         
         default:
         return state 
     }
+}
+
+const newReferenceReducer = (state = {title: "", link: "", dropDownValueArray: []}, action) =>{
+
+    switch(action.type){
+
+        case CLEAR_NEW_REFERENCE:
+        return {title: "", link: "", dropDownValueArray: []}
+
+        case SET_REFERENCE_TITLE:
+        return {...state, title: action.payload}
+
+        case SET_REFERENCE_LINK:
+        return {...state, link: action.payload}
+
+        case UPDATE_REFERENCE_CATEGORIES:
+        return {...state, dropDownValueArray: action.payload}
+     
+        default:
+        return  state
+    }
+
 }
 
 const ownerFocusReducer = (state ="myNotes", action) =>{
@@ -228,7 +260,13 @@ const reducers ={
     referenceSearchCategoryId: referenceSearchCategoryIdReducer,
     moreNotes: moreNotesReducer,
     moreReferences: moreReferencesReducer,
-    referenceSearchResultsId: referenceSearchResultsIdReducer
+    referenceSearchResultsId: referenceSearchResultsIdReducer,
+    newReference: newReferenceReducer
+    // referenceCategory: referenceCategoryReducer
 }
 
 export default combineReducers(reducers)
+
+
+
+
