@@ -351,3 +351,41 @@ span > #text-bg-stnd {
   display: grid;
   grid-template-rows: 33% 33% 33%;
 }
+
+#select-reference-container{
+  height:100%;
+  width: 100vw;
+  grid-column-start: 1;
+  grid-column-end: 8;
+  grid-row-start: 2;
+  grid-row-end: 11;
+  display: grid;
+  grid-template-rows: 6.5% 80%;
+}
+/* search bar container */
+#select-reference{
+  height:100%;
+  width: 100vw;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  /* display: grid;
+  grid-template-rows: 6.5% 80%; */
+}
+
+#select-reference-links{
+  height:100%;
+  width: 100vw;
+  padding: .3rem;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#select-reference-links button{
+  margin: .2rem;
+}
+
+#navbar-dropdown-menu-references{
+  border-radius: 1rem;
+  background-color: rgba(37,206,209);
+  color: #FEFCFB;
+}

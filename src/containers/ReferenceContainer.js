@@ -53,13 +53,16 @@ class ReferenceContainer extends React.Component{
         return refArray.length > 0 ? true : false
     }
 
-
-
-
+    handleReferenceAlreadyExists = () =>{
+        
+        setTimeout(this.props.clearExistingReference, 3000)
+        return <p id ="select-reference-container-already-exists">Reference already exists and has been added to your saved references as: {this.props.existingReference.title} </p>
+    }
 render(){
     return(
         <div id="select-reference-container">
           <ReferenceSearchBar />
+            {this.props.existingReference.length > 0 ? this.handleReferenceAlreadyExists() : null}
          <div id="select-reference-links">
             { this.handleFilterSelectionOnSearch().map(item => 
                 <div key={item.reference.id}>
