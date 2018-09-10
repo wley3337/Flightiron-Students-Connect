@@ -335,6 +335,11 @@ span > #text-bg-stnd {
 }
 
 /* reference styling */
+#navbar-dropdown-menu-references{
+  border-radius: 1rem;
+  background-color: rgba(37,206,209);
+  color: #FEFCFB;
+}
 
 #select-reference-create {
   height:75%;
@@ -359,6 +364,7 @@ span > #text-bg-stnd {
 #select-reference-container{
   height:100%;
   width: 100vw;
+  margin-top: .3rem;
   grid-column-start: 1;
   grid-column-end: 8;
   grid-row-start: 2;
@@ -367,29 +373,82 @@ span > #text-bg-stnd {
   grid-template-rows: 6.5% 80%;
 }
 /* search bar container */
-#select-reference{
+#select-reference-search-bar{
   height:100%;
   width: 100vw;
   grid-row-start: 1;
   grid-row-end: 2;
-  /* display: grid;
-  grid-template-rows: 6.5% 80%; */
+  display: grid;
+  grid-template-columns: 65% 35%;
 }
+#select-reference-search-bar-dropdown-container{
+  height:100%;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 65% 35%;
 
+}
+#select-reference-search-bar-dropdown{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+#select-reference-search-bar-button{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  margin: .1rem;
+  border-radius: 1rem;
+  background-color: #034078;
+  color: #FEFCFB;
+}
 #select-reference-links{
   height:100%;
   width: 100vw;
   padding: .3rem;
   grid-row-start: 2;
   grid-row-end: 3;
+  
+}
+
+#select-reference-links div{
+  display: grid;
+  grid-template-columns: 65% 35%;
+  margin: .5rem;
+  align-content: center;
+  border-bottom: 1px solid #FEFCFB;
+  background-color: #034078;
+  color: #FEFCFB;
 }
 
 #select-reference-links button{
+  grid-column-start: 2;
+  grid-column-end: 3;
   margin: .2rem;
+  border-radius: 1rem;
+  background-color: rgba(37,206,209);
+  color: #034078;
+  align-self: center;
+  margin-bottom: .4rem;
+}
+#select-reference-links p{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  margin: .2rem;
+  color: rgb(88, 114, 160);
+  text-align: center;
+  margin-bottom: .4rem;
 }
 
-#navbar-dropdown-menu-references{
+#select-reference-link a{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  margin: .1rem;
   border-radius: 1rem;
   background-color: rgba(37,206,209);
   color: #FEFCFB;
+  align-content: center;
 }
+
+.select-reference-link-item{
+  color: #FEFCFB;
+}
+

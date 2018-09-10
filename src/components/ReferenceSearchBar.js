@@ -20,7 +20,7 @@ class ReferenceSearchBar extends React.Component{
          :   
         
                 this.props.user  ? 
-                        <div id="select-reference">
+                        <div id="select-reference-search-bar">
                                    {this.props.categories ?
                                         <span id="select-reference-search-bar-dropdown-container">
                                             <Dropdown 

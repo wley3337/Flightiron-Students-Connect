@@ -71,6 +71,7 @@ render(){
                     <a    
                         href={item.reference.link}
                         target="_blank"
+                        className="select-reference-link-item"
                     >
                         {item.reference.title}
                     </a> 
@@ -78,9 +79,9 @@ render(){
                         <button onClick={() => this.props.removeReferenceToUser(item.reference.id)}>Remove</button> 
                     :
                         this.checkForSavedReference(item.reference.id) ? 
-                         null 
+                         <p>Already Saved</p>
                         :
-                         <button onClick={() => this.props.saveReferenceToUser(item.reference.id)}>Save</button>
+                         <button onClick={() => this.props.saveReferenceToUser(item.reference.id)}>Add to my notes</button>
                     }
 
                    
