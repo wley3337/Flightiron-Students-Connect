@@ -13,6 +13,7 @@ import { Redirect } from 'react-router'
 class ReferenceContainer extends React.Component{
 
     componentDidMount(){
+        
         if(localStorage.getItem('token')){
         this.props.getUser()
         this.props.getCategories()
@@ -56,7 +57,7 @@ class ReferenceContainer extends React.Component{
     handleReferenceAlreadyExists = () =>{
         
         setTimeout(this.props.clearExistingReference, 3000)
-        return <p id ="select-reference-container-already-exists">Reference already exists and has been added to your saved references as: {this.props.existingReference.title} </p>
+        return <p id ="select-reference-container-already-exists">Reference already exists and has been added to your saved references as: {this.props.existingReference[0].title} </p>
     }
 render(){
     return(
