@@ -62,8 +62,9 @@ render(){
     return(
         <div id="select-reference-container">
           <ReferenceSearchBar />
-            {this.props.existingReference.length > 0 ? this.handleReferenceAlreadyExists() : null}
+            
          <div id="select-reference-links">
+         {this.props.existingReference.length > 0 ? this.handleReferenceAlreadyExists() : null}
             { this.handleFilterSelectionOnSearch().map(item => 
                 <div key={item.reference.id}>
                     <a    
