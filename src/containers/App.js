@@ -8,6 +8,9 @@ import ViewContainer from './ViewContainer';
 import SelectionContainer from './SelectionContainer'
 import NavBar from './NavBar'
 import ReferenceContainer from './ReferenceContainer'
+import ReferenceCreateBar from '../components/ReferenceCreateBar'
+import NewReferenceForm from '../components/NewReferenceForm'
+import MyReferenceContainer from './MyReferenceContainer'
 import { Route } from 'react-router-dom'
 
 class App extends Component {
@@ -28,6 +31,13 @@ class App extends Component {
             <Route exact path="/select/my-page" render={() =>  <ViewContainer/> }/>
             <Route exact path="/select/notes" render={() =>  <SelectionContainer/> }/>
             <Route exact path="/select/references" render={() => <ReferenceContainer/>}/>
+            <Route exact path="/select/references/new" render={() => <ReferenceCreateBar />}/>
+            <Route exact path="/select/references/new" render={() => <NewReferenceForm />}/>
+            {/* <Route exact path="/select/references/my-reference" render={() => <MyReferenceContainer />}/> */}
+            
+
+            
+
       </div>
     );
   }

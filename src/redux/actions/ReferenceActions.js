@@ -1,4 +1,4 @@
-import { UPDATE_REFERENCE_CATEGORIES,SET_REFERENCE_LINK, SET_REFERENCE_TITLE, CLEAR_NEW_REFERENCE } from './types'
+import { UPDATE_REFERENCE_CATEGORIES,SET_REFERENCE_LINK, SET_REFERENCE_TITLE, CLEAR_NEW_REFERENCE, SET_REFERENCES } from './types'
 import { ROOT_URL } from './index'
 
 
@@ -7,7 +7,6 @@ export const setReferenceTitle = (title) =>
 
 export const setReferenceLink = (link) =>
     ({type: SET_REFERENCE_LINK, payload: link})
-
 
 export const updateReferenceCategories = (dropdownCatId) => 
     ({type: UPDATE_REFERENCE_CATEGORIES, payload: dropdownCatId})
@@ -36,6 +35,19 @@ export const createNewReference = (newRefObj) => (dispatch) =>{
     .then(json =>{debugger} )
 
 
+}
+
+export const getReferences = (referenceStartId) => (dispatch) =>{
+    fetch(ROOT_URL + "/references/" + referenceStartId, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+    })
+    .then(r => r.json())
+    .then(json =>{dispatch({type: SET_REFERENCES, payload: json})} )
 }
 
 

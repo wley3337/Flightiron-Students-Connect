@@ -41,7 +41,8 @@ class NavBar extends React.Component {
         })
     }
 
-    handleLogOut = (e) =>{    
+    handleLogOut = (e) =>{ 
+        e.persist()   
         this.handleItemClick(e)
         this.props.logoutUser()
     }
@@ -95,15 +96,44 @@ class NavBar extends React.Component {
                             />
                             </Dropdown.Menu>
                         </Dropdown>
-                       
-                         <Menu.Item
-                            name='references'
-                            active={this.props.ownerFocus === 'references'}
-                            onClick={() => this.handleItemClick("references")}
-                            value="references"
-                            as={ Link }
-                            to="/select/references"
-                        />
+
+                        <Dropdown text="References" pointing className='link item'>
+                         <Dropdown.Menu id="navbar-dropdown-menu-references">
+                            <Dropdown.Item
+                                name='newReference'
+                                text="New Reference"
+                                className="navbar-dropdown-text"
+                                active={this.props.ownerFocus === 'newReference'}
+                                onClick={this.handleNewNoteClick }
+                                value="newReference"
+                                as={ Link }
+                                to="/select/references/new"
+                            />
+                            <Dropdown.Item 
+                                name='myReference' 
+                                text="My References"
+                                className="navbar-dropdown-text"
+                                active={this.props.ownerFocus === 'myReference'}
+                                onClick={() => this.handleItemClick("myReference")}
+                                value="myReference" 
+                                as={ Link }
+                                to="/select/references"
+                            />
+                            <Dropdown.Item
+                                name='references'
+                                text="References"
+                                className="navbar-dropdown-text"
+                                active={this.props.ownerFocus === 'references'}
+                                onClick={() => this.handleItemClick("references")}
+                                value="references"
+                                as={ Link }
+                                to="/select/references"
+                            />
+                            </Dropdown.Menu>
+                        </Dropdown>
+
+
+
                     </Menu>
                 </div>
             :

@@ -11,7 +11,14 @@ import ViewNavBar from '../containers/ViewNavBar'
 
 class ReferenceCreateBar extends React.Component{
 
-    
+    componentDidMount(){
+        
+        if(localStorage.getItem('token')){
+        this.props.getUser()
+        this.props.getCategories()
+        }
+      
+    }
 
    
     //this makes the category also available to add to a note if the user switches screens

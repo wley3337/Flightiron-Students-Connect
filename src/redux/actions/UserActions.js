@@ -95,9 +95,40 @@ export const updateUser = (data, userId) => (dispatch) => {
 
 
 function manageNewCategoriesAndSetUser(json, dispatch) {
-   
     helpGetNewCat(dispatch);
     setUser(json, dispatch)
+}
+
+export const saveReferenceToUser = (referenceId) => (dispatch)=>{
+    const referenceObj = {reference: {id:referenceId}}
+    fetch(ROOT_URL + "/references/save", {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+        body: JSON.stringify(referenceObj)
+    })
+    .then(r => r.json())
+    .then(json => dispatch({type: SET_CURRENT_USER, payload: json["userObj"]}))
+}
+
+export const removeReferenceToUser = (referenceId) => (dispatch)=>{
+    const referenceObj = {reference: {id:referenceId}}
+    fetch(ROOT_URL + "/references/remove", {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+        body: JSON.stringify(referenceObj)
+    })
+    .then(r => r.json())
+    .then(json => dispatch({type: SET_CURRENT_USER, payload: json["userObj"]}))
+
+    
 }
 
 

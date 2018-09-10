@@ -56,9 +56,10 @@ class LoginForm extends Component {
                 <input 
                     name="Log-In"
                     className="text-bg-stnd"
-                    value="Log-In"
                     type="Submit" 
                     id="li-submit"
+                    value="Log-In"
+                    onClick={this.onSubmit}
                     />
                    
             </form>

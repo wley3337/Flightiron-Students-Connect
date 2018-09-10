@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { LOADING, SET_CURRENT_USER, LOGOUT, DELETE_NOTE, SET_FOCUS_NOTE, UPDATE_PUBLIC,
          UPDATE_CATEGORIES, UPDATE_NOTE_CONTENT, UPDATE_NEW_CATEGORY, GET_ALL_CATEGORIES,
          ADD_CATEGORY, GET_ALL_PUBLIC_NOTES, SET_FLASH_MESSAGE, DELETE_FLASH_MESSAGE, 
-         SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID, REFERENCE_SEARCH_RESULTS, SET_REFERENCE_TITLE, SET_REFERENCE_LINK, UPDATE_REFERENCE_CATEGORIES, CLEAR_NEW_REFERENCE} from './actions/types'
+         SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID, REFERENCE_SEARCH_RESULTS, SET_REFERENCE_TITLE, SET_REFERENCE_LINK, UPDATE_REFERENCE_CATEGORIES, CLEAR_NEW_REFERENCE, SET_REFERENCES} from './actions/types'
 
 const currentUserReducer =( state = null, action ) =>{
 
@@ -188,6 +188,9 @@ const referenceSearchCategoryIdReducer = (state="", action) => {
 const moreReferencesReducer = (state = false, action) =>{
     switch(action.type){
 
+        case SET_REFERENCES:
+        return action.payload.more
+
         case REFERENCE_SEARCH_RESULTS:
         return action.payload.more
 
@@ -195,6 +198,29 @@ const moreReferencesReducer = (state = false, action) =>{
         return state
     }
 
+}
+//user references
+const referencesReducer = (state = [], action) =>{
+    switch(action.type){
+
+        case SET_CURRENT_USER:
+        return action.payload.references
+
+        default:
+        return state
+    }
+}
+
+//public references
+const publicReferencesReducer = (state = [], action) =>{
+    switch(action.type){
+
+        case SET_REFERENCES:
+        return action.payload.references
+
+        default:
+        return state
+    }
 }
 
 const referenceSearchResultsIdReducer = (state=[], action) => {
@@ -261,7 +287,9 @@ const reducers ={
     moreNotes: moreNotesReducer,
     moreReferences: moreReferencesReducer,
     referenceSearchResultsId: referenceSearchResultsIdReducer,
-    newReference: newReferenceReducer
+    newReference: newReferenceReducer,
+    references: referencesReducer,
+    publicReferences: publicReferencesReducer
     // referenceCategory: referenceCategoryReducer
 }
 

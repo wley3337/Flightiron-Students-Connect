@@ -7,6 +7,7 @@ import { Redirect } from 'react-router'
 
 
 class ReferenceSearchBar extends React.Component{
+
  
 
    render(){ 
