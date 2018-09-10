@@ -30,7 +30,7 @@ class ReferenceSearchBar extends React.Component{
                                                 search 
                                                 selection 
                                                 options= {this.props.categories}
-                                                value={this.props.searchCategoryId}
+                                                value={this.props.referenceSearchCategoryId}
                                                 onChange={(e,value) => this.props.setReferenceCategoryId(value.value)}
                                             />
                                             <button 
@@ -55,7 +55,8 @@ const mapStateToProps = (state) => {
        notes: state.notes,
        user: state.currentUser,
        view: state.view,
-       noteOffsetId: state.noteOffsetId
+       noteOffsetId: state.noteOffsetId,
+       referenceSearchCategoryId: state.referenceSearchCategoryId
     }
 }
 

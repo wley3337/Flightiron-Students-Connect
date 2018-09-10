@@ -45,6 +45,14 @@ class ReferenceContainer extends React.Component{
      :  referenceArray;
     }
 
+    checkForSavedReference=(id) =>{
+        const refArray =[]
+        for(const object of this.props.references){
+            object.reference.id === id ? refArray.push(id) : null
+        }
+        return refArray.length > 0 ? true : false
+    }
+
 
 
 
@@ -61,7 +69,16 @@ render(){
                     >
                         {item.reference.title}
                     </a> 
-                    <button onClick={() => this.props.saveReferenceToUser(item.reference.id)}>Save</button>
+                   {this.props.ownerFocus === 'myReference' ? 
+                        <button onClick={() => this.props.removeReferenceToUser(item.reference.id)}>Remove</button> 
+                    :
+                        this.checkForSavedReference(item.reference.id) ? 
+                         null 
+                        :
+                         <button onClick={() => this.props.saveReferenceToUser(item.reference.id)}>Save</button>
+                    }
+
+                   
                 </div> 
             )}
          </div>
@@ -77,7 +94,8 @@ const mapPropsToState = (state) =>{
         references: state.references,
         referenceOffsetId: state.referenceOffsetId,
         publicReferences: state.publicReferences,
-        referenceSearchCategoryId: state.referenceSearchCategoryId
+        referenceSearchCategoryId: state.referenceSearchCategoryId,
+        existingReference: state.existingReference
     }
 }
 

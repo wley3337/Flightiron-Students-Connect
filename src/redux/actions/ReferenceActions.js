@@ -1,4 +1,4 @@
-import { UPDATE_REFERENCE_CATEGORIES,SET_REFERENCE_LINK, SET_REFERENCE_TITLE, CLEAR_NEW_REFERENCE, SET_REFERENCES } from './types'
+import { UPDATE_REFERENCE_CATEGORIES,SET_REFERENCE_LINK, SET_REFERENCE_TITLE, CLEAR_NEW_REFERENCE, SET_REFERENCES, SET_CURRENT_USER, UPDATE_REFERENCES, SET_EXISTING_REFERENCE } from './types'
 import { ROOT_URL } from './index'
 
 
@@ -32,10 +32,23 @@ export const createNewReference = (newRefObj) => (dispatch) =>{
         body: JSON.stringify(referenceObj)
     })
     .then(r => r.json())
-    .then(json =>{debugger} )
+    .then(json =>handleNewReferenceResponse(json, dispatch))
+}
 
+function handleNewReferenceResponse(json, dispatch){
+    dispatch({type: SET_CURRENT_USER, payload: json["userObj"]});
+    dispatch({type: UPDATE_REFERENCES, payload: json})
+    if(json["existingReference"]){
+        // send to existingReferenceReducer
+        debugger
+        dispatch({type: SET_EXISTING_REFERENCE, payload: [json["existingReference"]]})
+
+    }
 
 }
+
+
+
 
 export const getReferences = (referenceStartId) => (dispatch) =>{
     fetch(ROOT_URL + "/references/" + referenceStartId, {
