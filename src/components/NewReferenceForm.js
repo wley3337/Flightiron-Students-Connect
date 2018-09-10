@@ -23,8 +23,9 @@ handleCreateNewReference = () =>{
             categoryIdArray: dropDownValueArray
         }
         this.props.createNewReference(referenceObj)
-        this.props.setOwnerFocus("references")
+        this.props.setOwnerFocus("myReferences")
         this.props.getCategories()
+        this.props.clearNewReference()
         this.setState({error: {title: null, link: null}, redirect: true})
         
     }else{

@@ -7,7 +7,13 @@ import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 
 class SelectionContainer extends React.Component {
-   
+    componentDidMount(){
+        
+        if(localStorage.getItem('token')){
+        this.props.getAllPublicNotes(this.props.noteOffsetId)
+        }
+      
+    }
 
     handleItemFocus= (item) =>{
         this.props.setFocusNote(item)
@@ -52,15 +58,17 @@ class SelectionContainer extends React.Component {
                     >
                     
                         { this.handleFilterSelectionOnSearch().map(item => 
+                                <span id="select-display-note-links-span">
                                     <Link 
-                                    id="select-display-note-links"
+                                    className="select-display-note-links"
                                     onClick={()=> this.handleItemFocus(item)}key={item.note.id}
                                      to="/select/my-page">
                                     <ReactQuill 
                                         value={item.note.note_content.substring(0,60)}
                                         theme="bubble"
                                     /> 
-                                    </Link>   
+                                    </Link> 
+                                </span>  
                         )}
                                                                         
 
@@ -74,6 +82,7 @@ class SelectionContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        noteOffsetId: state.noteOffsetId,
         categories: state.categories,
         notes: state.notes,
         user: state.currentUser,

@@ -315,6 +315,7 @@ span > #text-bg-stnd {
 
 #select-display-div{
   margin: .3rem;
+  margin-top: .6rem;
   grid-row-start: 3;
   grid-row-end: 11;
   padding: .5rem;
@@ -326,8 +327,11 @@ span > #text-bg-stnd {
   border-radius: 1rem;
 }
 
-#select-display-note-links{
+.select-display-note-links{ 
   color: #FEFCFB;
+}
+#select-display-note-links-span .ql-editor{
+  border-bottom: 1px solid black;
 }
 
 /* reference styling */

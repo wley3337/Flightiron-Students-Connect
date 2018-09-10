@@ -47,7 +47,7 @@ class ReferenceCreateBar extends React.Component{
                                             multiple
                                             search 
                                             selection 
-                                            
+                                            additionLabel="Press 'enter' to add:  "
                                             // additionLabel
                                             allowAdditions
                                             onAddItem={this.handleOnAdd}

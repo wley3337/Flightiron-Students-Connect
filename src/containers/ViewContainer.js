@@ -63,7 +63,7 @@ class ViewContainer extends React.Component{
                                             multiple
                                             search 
                                             selection 
-                                            
+                                            additionLabel="Press 'enter' to add:  "
                                             // additionLabel
                                             allowAdditions
                                             onAddItem={this.handleOnAdd}
@@ -71,28 +71,16 @@ class ViewContainer extends React.Component{
                                             value={this.props.view.dropDownValueArray}
                                             onChange={(e,value) => this.props.updateCategories(value.value)}
                                         />
-                                        : null}
-                                    
-{/*                                 
-                                        <input 
-                                            id="view-new-category"
-                                            className="text-bg-stnd"
-                                            type="text" 
-                                            name="newCategory" 
-                                            value={this.props.view.newCategory} 
-                                            placeholder="New Category" 
-                                            onChange={(e) => this.props.updateNewCategory(e.target.value)}
-                                        /> */}
-                                      
-                                    </span>
-                                    <div id="view-note-area">
+                                        : null}           
+                                </span>
+                                <div id="view-note-area">
                                     <ReactQuill 
                                         id="view-quill-area"
                                         theme="snow" 
                                         value={this.props.view.content} 
                                         onChange={(value) =>{this.props.updateNoteContent(value)}} 
                                     />
-                                    </div>
+                                </div>
                         </div>
                         
                     :   

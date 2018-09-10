@@ -34,6 +34,7 @@ class ViewNavBar extends React.Component {
 
     render ()
         {const { activeItem } = this.state
+        
     return(
         <div id ="view-nav-bar">
             <Menu className="text-bg-stnd">
@@ -46,31 +47,34 @@ class ViewNavBar extends React.Component {
                     />
                 </Menu.Item> 
                                   
-             <Menu.Item
-                name='delete'
-                active={activeItem === 'delete'}
-                onClick={this.handleDelete}
-                >
-                Delete
-                </Menu.Item>                   
                 <Menu.Item
-                name='save'
-                active={activeItem === 'save'}
-                onClick={this.handleSave}
-                as={Link}
-                to="/select/notes"
+                    name='delete'
+                    active={activeItem === 'delete'}
+                    onClick={this.handleDelete}
                 >
-                Save
+                    Delete
                 </Menu.Item>
-
-
-                {/* <Menu.Item
-                name='upcomingEvents'
-                active={activeItem === 'upcomingEvents'}
-                onClick={this.handleItemClick}
-                >
-                Upcoming Events
-                </Menu.Item> */}
+                    {this.props.view.noteUserId === this.props.user.id ? 
+                        <Menu.Item
+                            name='save'
+                            active={activeItem === 'save'}
+                            onClick={this.handleSave}
+                            as={Link}
+                            to="/select/notes"
+                        >
+                            Save
+                        </Menu.Item>
+                    :
+                        <Menu.Item
+                            name='save'
+                            active={activeItem === 'save'}
+                            onClick={this.handleSave}
+                            as={Link}
+                            to="/select/notes"
+                        >
+                            Save a copy of note
+                        </Menu.Item>
+                    }
         </Menu>
       </div>
     )

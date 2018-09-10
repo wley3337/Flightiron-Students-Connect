@@ -19,6 +19,7 @@ class SearchBar extends React.Component {
                         placeholder='Type to search categories' 
                         search 
                         selection 
+                        
                         options= {this.props.categories}
                         value={this.props.searchCategoryId}
                         onChange={(e,value) => this.props.setSearchCategoryId(value.value)}

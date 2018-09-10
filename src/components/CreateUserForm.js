@@ -25,6 +25,7 @@ class CreateUserForm extends Component {
     this.props.deleteFlashMessage()
     this.props.createUser(this.state)
  }
+
  handleErrorDisplayUsername = () =>{
     
   return  !this.props.flashMessage[0].errors.username[0].includes("can't") ? 
@@ -91,10 +92,11 @@ class CreateUserForm extends Component {
                 name="lastName"
             />
              <input
+                type="date"
                 id="cu-start-date"
                 className="text-bg-stnd"
                 value={this.state.startDate}
-                placeholder='Start Date : YYYY-MM-DD'
+                placeholder='Start Date'
                 onChange={this.onChange}
                 name="startDate"
             />
