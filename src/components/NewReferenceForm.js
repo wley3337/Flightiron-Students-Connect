@@ -49,7 +49,8 @@ render(){
         : 
         <div id="select-reference-create-input-container">
             {this.state.error.title ? <p id="select-reference-create-title-error">{this.state.error.title}</p> : null}  
-            <input 
+            <input
+                id= "select-reference-create-title" 
                 type="text" 
                 placeholder="Title of Reference"
                 value={this.props.newReference.title} 
@@ -57,6 +58,7 @@ render(){
             />
             {this.state.error.link ? <p id="select-reference-create-link-error">{this.state.error.link}</p> : null} 
             <input 
+                id= "select-reference-create-link" 
                 type="url" 
                 placeholder="Url Link to Reference"
                 value={this.props.newReference.link} 
@@ -65,6 +67,7 @@ render(){
             />
 
             <button 
+                id="select-reference-create-button"
                 onClick={this.handleCreateNewReference}
             >
                 Create and Add your Reference

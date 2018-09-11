@@ -57,7 +57,7 @@ class ReferenceContainer extends React.Component{
     handleReferenceAlreadyExists = () =>{
         
         setTimeout(this.props.clearExistingReference, 3000)
-        return <p id ="select-reference-container-already-exists">Reference already exists and has been added to your saved references as: {this.props.existingReference[0].title} </p>
+        return <p id ="select-reference-container-already-exists">Reference already exists and has been added to your saved references as: <span id="select-reference-container-already-exists-title">{this.props.existingReference[0].title}</span> </p>
     }
 render(){
     return(
@@ -87,7 +87,27 @@ render(){
                    
                 </div> 
             )}
+
+            
          </div>
+         {this.props.ownerFocus === "references" ? 
+                        <div className="last-next-button-container">
+                            {this.props.referenceHistory.length > 0 ? 
+                                <button
+                                    onClick={()=> this.props.lastReferences(this.props.referenceHistory)}
+                                    className="last"
+                                >Last 300</button> 
+                            : null}
+                            {this.props.moreReferences ? 
+                                <button 
+                                    className="next"
+                                    onClick={()=> this.props.nextReferences(this.props.referenceOffsetId,this.props.publicReferences)}
+                                >Next 300</button> 
+                            : null}
+                        </div>
+                    : 
+                        null
+                    }
        </div>
     )
 }
@@ -101,7 +121,9 @@ const mapPropsToState = (state) =>{
         referenceOffsetId: state.referenceOffsetId,
         publicReferences: state.publicReferences,
         referenceSearchCategoryId: state.referenceSearchCategoryId,
-        existingReference: state.existingReference
+        existingReference: state.existingReference,
+        referenceHistory: state.referenceHistory,
+        moreReferences: state.moreReferences
     }
 }
 

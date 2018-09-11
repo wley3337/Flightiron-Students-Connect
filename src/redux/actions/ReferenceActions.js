@@ -1,4 +1,4 @@
-import { UPDATE_REFERENCE_CATEGORIES,SET_REFERENCE_LINK, SET_REFERENCE_TITLE, CLEAR_NEW_REFERENCE, SET_REFERENCES, SET_CURRENT_USER, UPDATE_REFERENCES, SET_EXISTING_REFERENCE, CLEAR_EXISTING_REFERENCE } from './types'
+import { UPDATE_REFERENCE_CATEGORIES,SET_REFERENCE_LINK, SET_REFERENCE_TITLE, CLEAR_NEW_REFERENCE, SET_REFERENCES, SET_CURRENT_USER, UPDATE_REFERENCES, SET_EXISTING_REFERENCE, CLEAR_EXISTING_REFERENCE, ADD_REFERENCE_HISTORY, REMOVE_REFERENCE_HISTORY, SET_REFERENCE_OFFSET_ID, CLEAR_REFERENCE_OFFSET_ID, SET_MORE_REFERENCES} from './types'
 import { ROOT_URL } from './index'
 
 
@@ -61,9 +61,52 @@ export const getReferences = (referenceStartId) => (dispatch) =>{
             },
     })
     .then(r => r.json())
-    .then(json =>{dispatch({type: SET_REFERENCES, payload: json})} )
+    .then(json =>handleSettingPublicReferences(json, dispatch))
 }
 
+
+export const setReferenceOffsetId = (id) =>({type: SET_REFERENCE_OFFSET_ID, payload: id})
+export const clearReferenceOffsetId = () =>({type: CLEAR_REFERENCE_OFFSET_ID})
+
+
+function handleSettingPublicReferences(json, dispatch){
+ 
+  if(json["references"].length > 0){ 
+    dispatch(setReferenceOffsetId(json["references"][json["references"].length-1].reference.id))
+  }
+  dispatch({type: SET_REFERENCES, payload: json});
+}
+
+
+
+
+export const addPublicReferenceHistory = (currentPublicReferencesArray)=>
+   ({type: ADD_REFERENCE_HISTORY, payload: currentPublicReferencesArray })
+
+export const removePublicReferenceHistory = () =>({type: REMOVE_REFERENCE_HISTORY})
+
+
+export const nextReferences = (id, currentPublicReferencesArray) => (dispatch) => {
+    //add reference to history
+    dispatch(addPublicReferenceHistory(currentPublicReferencesArray))
+    //fetch reference based on starting reference id
+    dispatch(getReferences(id))
+}
+
+export const lastReferences = (publicReferencesHistory) => (dispatch) =>{
+  dispatch({type: SET_REFERENCES, payload: {references: publicReferencesHistory[publicReferencesHistory.length -1]}})
+    if(publicReferencesHistory.length > 1 ){
+
+      const lastId = publicReferencesHistory[publicReferencesHistory.length -1][publicReferencesHistory[publicReferencesHistory.length -1].length -1].reference.id
+      dispatch(setReferenceOffsetId(lastId))
+      dispatch({type: SET_MORE_REFERENCES, payload: true})
+    }else{
+      dispatch(setReferenceOffsetId(0))
+      dispatch({type: SET_MORE_REFERENCES, payload: true})
+    }
+  
+  dispatch(removePublicReferenceHistory())
+}
 
 
 

@@ -42,6 +42,7 @@ class SelectionContainer extends React.Component {
 
 
     render(){
+        // debugger
         return(
             this.props.user ?
                 <div id="selection-container">
@@ -73,6 +74,25 @@ class SelectionContainer extends React.Component {
                                                                         
 
                     </div>
+                    {this.props.ownerFocus !== "myNotes" ? 
+                        <div className="last-next-button-container">
+                            {this.props.publicNoteHistory.length > 0 ? 
+                                <button
+                                    onClick={()=> this.props.lastNotes(this.props.publicNoteHistory)}
+                                    className="last"
+                                >Last 300</button> 
+                            : null}
+                            {this.props.moreNotes ? 
+                                <button 
+                                    className="next"
+                                    onClick={()=> this.props.nextNotes(this.props.noteOffsetId,this.props.publicNotes)}
+                                >Next 300</button> 
+                            : null}
+                        </div>
+                    : 
+                        null
+                    }
+
                 </div>
             :
             null
@@ -89,7 +109,9 @@ const mapStateToProps = (state) => {
         publicNotes: state.publicNotes,
         searchTerm: state.searchTerm,
         ownerFocus: state.ownerFocus,
-        searchCategoryId: state.searchCategoryId
+        searchCategoryId: state.searchCategoryId,
+        moreNotes: state.moreNotes,
+        publicNoteHistory: state.publicNoteHistory
      }
  }
     

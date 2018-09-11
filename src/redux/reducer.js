@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { LOADING, SET_CURRENT_USER, LOGOUT, DELETE_NOTE, SET_FOCUS_NOTE, UPDATE_PUBLIC,
          UPDATE_CATEGORIES, UPDATE_NOTE_CONTENT, UPDATE_NEW_CATEGORY, GET_ALL_CATEGORIES,
          ADD_CATEGORY, GET_ALL_PUBLIC_NOTES, SET_FLASH_MESSAGE, DELETE_FLASH_MESSAGE, 
-         SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID, REFERENCE_SEARCH_RESULTS, SET_REFERENCE_TITLE, SET_REFERENCE_LINK, UPDATE_REFERENCE_CATEGORIES, CLEAR_NEW_REFERENCE, SET_REFERENCES, UPDATE_REFERENCES, SET_EXISTING_REFERENCE,CLEAR_EXISTING_REFERENCE} from './actions/types'
+         SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID, REFERENCE_SEARCH_RESULTS, SET_REFERENCE_TITLE, SET_REFERENCE_LINK, UPDATE_REFERENCE_CATEGORIES, CLEAR_NEW_REFERENCE, SET_REFERENCES, UPDATE_REFERENCES, SET_EXISTING_REFERENCE,CLEAR_EXISTING_REFERENCE, SET_NOTE_OFFSET_ID, CLEAR_NOTE_OFFSET_ID, ADD_NOTE_HISTORY, REMOVE_NOTE_HISTORY, SET_MORE_NOTES, ADD_REFERENCE_HISTORY, REMOVE_REFERENCE_HISTORY, SET_REFERENCE_OFFSET_ID, CLEAR_REFERENCE_OFFSET_ID, SET_MORE_REFERENCES } from './actions/types'
 
 const currentUserReducer =( state = null, action ) =>{
 
@@ -91,11 +91,28 @@ const publicNoteReducer = (state =[], action) =>{
     }
 }
 
-const moreNotesReducer = (state = false, action) =>{
+const publicNoteHistoryReducer = (state =[], action) =>{
+    switch(action.type){
+        case ADD_NOTE_HISTORY:
+        return [...state, action.payload]
+
+        case REMOVE_NOTE_HISTORY:
+        const newHistory = state.slice(0, state.length -1)
+        return newHistory
+
+        default:
+        return state
+    }
+}
+
+const moreNotesReducer = (state = true, action) =>{
     switch(action.type){
 
         case GET_ALL_PUBLIC_NOTES:
         return action.payload.more
+
+        case SET_MORE_NOTES:
+        return action.payload
 
         default:
         return state
@@ -128,7 +145,11 @@ const searchTermReducer = (state ="", action) =>{
 
 const notesOffsetIdReducer =(state = 0, action)=>{
     switch(action.type){
+        case SET_NOTE_OFFSET_ID:
+        return action.payload
 
+        case CLEAR_NOTE_OFFSET_ID:
+        return 0
 
         default:
         return state
@@ -137,7 +158,25 @@ const notesOffsetIdReducer =(state = 0, action)=>{
 
 const referenceOffsetIdReducer =(state = 0, action)=>{
     switch(action.type){
+        case SET_REFERENCE_OFFSET_ID:
+        return action.payload
+        
+        case CLEAR_REFERENCE_OFFSET_ID:
+        return 0
 
+        default:
+        return state
+    }
+}
+
+const referenceHistoryReducer = (state =[], action) =>{
+    switch(action.type){
+        case ADD_REFERENCE_HISTORY:
+        return [...state, action.payload]
+
+        case REMOVE_REFERENCE_HISTORY:
+        const newHistory = state.slice(0, state.length -1)
+        return newHistory
 
         default:
         return state
@@ -173,23 +212,15 @@ const referenceSearchCategoryIdReducer = (state="", action) => {
     }
 }
 
-// const referenceCategoryReducer = (state = [], action) =>{
-//     switch(action.type){
-//         case ADD_RREFERENCE_CATEGORY:
-
-//         return [...state, action.payload]
-
-//         default:
-//         return state
-//     }
-// }
-
 
 const moreReferencesReducer = (state = false, action) =>{
     switch(action.type){
 
         case SET_REFERENCES:
         return action.payload.more
+
+        case SET_MORE_REFERENCES:
+        return action.payload
 
         case REFERENCE_SEARCH_RESULTS:
         return action.payload.more
@@ -306,7 +337,9 @@ const reducers ={
     newReference: newReferenceReducer,
     references: referencesReducer,
     publicReferences: publicReferencesReducer, 
-    existingReference: existingReferenceReducer
+    existingReference: existingReferenceReducer,
+    publicNoteHistory: publicNoteHistoryReducer, 
+    referenceHistory: referenceHistoryReducer
     // referenceCategory: referenceCategoryReducer
 }
 
