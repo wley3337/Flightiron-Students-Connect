@@ -24,6 +24,11 @@ class NavBar extends React.Component {
     //sets the active collection based on menu item name. Uses store to populate the []
     handleItemClick = (argument) =>{
         this.props.setOwnerFocus(argument)
+        this.props.clearNoteOffsetId()
+        this.props.clearReferenceOffsetId()
+        this.props.clearReferenceHistory()
+        this.props.clearNoteHistory()
+
     }
 
     handleItemFocus= (item) =>{

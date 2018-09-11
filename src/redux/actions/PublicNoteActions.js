@@ -1,4 +1,4 @@
-import { GET_ALL_PUBLIC_NOTES, LOADING, SET_NOTE_OFFSET_ID, CLEAR_NOTE_OFFSET_ID, ADD_NOTE_HISTORY, REMOVE_NOTE_HISTORY, SET_MORE_NOTES } from './types'
+import { GET_ALL_PUBLIC_NOTES, LOADING, SET_NOTE_OFFSET_ID, CLEAR_NOTE_OFFSET_ID, ADD_NOTE_HISTORY, REMOVE_NOTE_HISTORY, SET_MORE_NOTES, CLEAR_NOTE_HISTORY } from './types'
 import { ROOT_URL } from './index'
 
 export const getAllPublicNotes = (id) => (dispatch) =>{
@@ -25,6 +25,7 @@ function handleSettingPublicNotes(json, dispatch){
 
 export const setNoteOffsetId = (id) =>({type: SET_NOTE_OFFSET_ID, payload: id})
 export const clearNoteOffsetId = () =>({type: CLEAR_NOTE_OFFSET_ID})
+export const clearNoteHistory = () => ({type: CLEAR_NOTE_HISTORY})
 
 
 export const addPublicNoteHistory = (currentPublicNotesArray)=>
