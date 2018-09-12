@@ -7,7 +7,7 @@ import * as actions from '../redux/actions'
 import {Dimmer, Loader, Checkbox } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 
-// css styling : select-reference, select-reference-search-bar
+
 
 
 class ReferenceContainer extends React.Component{
@@ -88,7 +88,7 @@ render(){
                         this.checkForSavedReference(item.reference.id) ? 
                          <p>Already Saved</p>
                         :
-                         <button onClick={() => this.props.saveReferenceToUser(item.reference.id)}>Add to my notes</button>
+                         <button onClick={() => this.props.saveReferenceToUser(item.reference.id)}>Add To My References</button>
                     }
 
                    

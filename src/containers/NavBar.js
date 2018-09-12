@@ -1,25 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
-import { Input, Menu, Dropdown, MenuItem } from 'semantic-ui-react'
-import { Route, Link} from 'react-router-dom'
-
-import SelectionContainer from './SelectionContainer'
+import { Menu, Dropdown } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 class NavBar extends React.Component {
-   
-   
-
-    componentDidMount(){
-        
-        if(localStorage.getItem('token')){
-        this.props.getCategories()
-        this.props.getUser()
-        this.props.getAllPublicNotes(this.props.noteOffsetId)
-        }
-      
-    }
-
    
     //sets the active collection based on menu item name. Uses store to populate the []
     handleItemClick = (argument) =>{
@@ -31,19 +16,9 @@ class NavBar extends React.Component {
 
     }
 
-    handleItemFocus= (item) =>{
-        this.props.setFocusNote(item)
-    }
-
     handleNewNoteClick = () =>{
         this.props.setFocusNote({note: {noteId: null, note_content: "", public_note: false, user_id : null}, categories: []})
         this.handleItemClick('newNote')
-    }
-
-    handleOnSearchChange = (e) =>{
-        this.setState({
-            searchTerm: e.target.value.toLowerCase()
-        })
     }
 
     handleLogOut = (e) =>{ 
@@ -51,8 +26,6 @@ class NavBar extends React.Component {
         this.handleItemClick(e)
         this.props.logoutUser()
     }
-
-   
 
     render(){
         return(
@@ -126,7 +99,7 @@ class NavBar extends React.Component {
                             />
                             <Dropdown.Item
                                 name='references'
-                                text="References"
+                                text="All References"
                                 className="navbar-dropdown-text"
                                 active={this.props.ownerFocus === 'references'}
                                 onClick={() => this.handleItemClick("references")}
@@ -149,12 +122,8 @@ class NavBar extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categories,
-        notes: state.notes,
         user: state.currentUser,
-        publicNotes: state.publicNotes,
-        ownerFocus: state.ownerFocus,
-        noteOffsetId: state.noteOffsetId
+        ownerFocus: state.ownerFocus
      }
  }
     

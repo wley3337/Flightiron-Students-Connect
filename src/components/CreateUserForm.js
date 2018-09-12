@@ -54,9 +54,8 @@ class CreateUserForm extends Component {
                 <div id="error-placement">
                     {this.handleErrorDisplay()}
                 </div>
-                
-                
-                : null}
+             : 
+              null}
             <input
                 id="li-user-name"
                 className="text-bg-stnd"

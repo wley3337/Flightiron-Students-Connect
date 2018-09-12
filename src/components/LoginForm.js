@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
@@ -43,11 +42,9 @@ class LoginForm extends Component {
                     onChange={this.onChange}
                 />
                 <input 
-                type="text"
+                    type="text"
                     id="li-password"
                     className="text-bg-stnd"
-                    // id='form-subcomponent-shorthand-input-last-name'
-                
                     value={this.state.password}
                     placeholder='password'
                     onChange={this.onChange}

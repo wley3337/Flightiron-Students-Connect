@@ -54,7 +54,7 @@ class ViewNavBar extends React.Component {
                 >
                     Delete
                 </Menu.Item>
-                    {this.props.view.noteUserId === this.props.user.id ? 
+                    {this.props.view.noteUserId === this.props.user.id || !this.props.view.noteUserId ? 
                         <Menu.Item
                             name='save'
                             active={activeItem === 'save'}
