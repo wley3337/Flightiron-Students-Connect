@@ -4,7 +4,7 @@ import * as actions from '../redux/actions'
 import {Dimmer, Loader, Dropdown } from 'semantic-ui-react'
 
 
-class ReferenceSearchBar extends React.Component{
+class ReferenceSearchBar extends React.PureComponent{
 
    render(){ 
       

@@ -9,7 +9,7 @@ import ViewNavBar from './ViewNavBar'
 
 
 
-class ViewContainer extends React.Component{
+class ViewContainer extends React.PureComponent{
 
     state ={
         text: "",

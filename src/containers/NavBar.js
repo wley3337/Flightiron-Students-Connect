@@ -4,7 +4,7 @@ import * as actions from '../redux/actions'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-class NavBar extends React.Component {
+class NavBar extends React.PureComponent {
 
     componentDidMount(){
         this.props.getUser()

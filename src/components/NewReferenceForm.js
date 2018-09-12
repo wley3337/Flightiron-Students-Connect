@@ -4,7 +4,7 @@ import * as actions from '../redux/actions'
 import { Redirect } from 'react-router'
 
 
-class NewReferenceForm extends React.Component{
+class NewReferenceForm extends React.PureComponent{
     state ={
         error: {title: null, link: null},
         redirect: false

@@ -6,7 +6,7 @@ import {Dimmer, Loader, Menu, Dropdown } from 'semantic-ui-react'
 
 
 
-class ReferenceCreateBar extends React.Component{
+class ReferenceCreateBar extends React.PureComponent{
 
     componentDidMount(){
         this.props.getCategories()

@@ -1,11 +1,13 @@
 import { UPDATE_CATEGORIES, UPDATE_NOTE_CONTENT, UPDATE_PUBLIC, SET_FOCUS_NOTE, UPDATE_NEW_CATEGORY } from './types'
-// import { ROOT_URL } from './index'
+import { updateUser } from './UserActions'
 
 
 
-
-export const setFocusNote = (payload) => 
-    ({type: SET_FOCUS_NOTE, payload: payload})
+export const setFocusNote = (payload) => (dispatch, getState) =>{
+    if(getState().view.content !== ""){dispatch(updateUser(getState().view, getState().currentUser.id))}
+    dispatch ({type: SET_FOCUS_NOTE, payload: payload})
+}
+   
 
 
 export const updateCategories = (payload) => 

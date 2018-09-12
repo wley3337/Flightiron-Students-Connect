@@ -6,14 +6,13 @@ import { Link } from 'react-router-dom'
 
 import SearchBar from '../components/SearchBar'
 
-class SelectionContainer extends React.Component {
+class SelectionContainer extends React.PureComponent {
 
     componentDidMount(){
         this.props.getAllPublicNotes(this.props.noteOffsetId)
     }
 
     handleItemFocus= (item) =>{
-        this.props.view.content !== "" ? this.props.updateUser(this.props.view,this.props.user.id) : null
         this.props.setFocusNote(item)  
     }
 
@@ -103,8 +102,7 @@ const mapStateToProps = (state) => {
         ownerFocus: state.ownerFocus,
         searchCategoryId: state.searchCategoryId,
         moreNotes: state.moreNotes,
-        publicNoteHistory: state.publicNoteHistory,
-        view: state.view
+        publicNoteHistory: state.publicNoteHistory
      }
  }
     

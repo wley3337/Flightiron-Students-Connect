@@ -5,7 +5,7 @@ import * as actions from '../redux/actions'
 import ReferenceSearchBar from '../components/ReferenceSearchBar'
 
 
-class ReferenceContainer extends React.Component{
+class ReferenceContainer extends React.PureComponent{
 
     componentDidMount(){
         this.props.getCategories()
