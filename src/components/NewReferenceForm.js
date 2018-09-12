@@ -1,11 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
-import { Link } from 'react-router-dom'
-import {Dimmer, Loader, Checkbox } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
-
-// css styling : select-reference, select-reference-search-bar
 
 
 class NewReferenceForm extends React.Component{

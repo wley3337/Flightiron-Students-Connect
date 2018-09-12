@@ -5,16 +5,7 @@ import * as actions from '../redux/actions'
 import { Link} from 'react-router-dom'
 
 class ViewNavBar extends React.Component {
-    state ={
-        activeItem: ""
-    }
-
-    handleItemClick = (e) =>{
-        this.setState({
-            activeItem: e.target.name
-        })
-    }
-
+   
     handleDelete = () =>{
         if(this.props.view.noteId && (this.props.view.noteUserId === this.props.user.id)){
           const noteId = this.props.view.noteId
@@ -32,9 +23,7 @@ class ViewNavBar extends React.Component {
         this.props.updateUser(this.props.view, this.props.user.id)
     }
 
-    render ()
-        {const { activeItem } = this.state
-        
+    render (){
     return(
         <div id ="view-nav-bar">
             <Menu className="text-bg-stnd">
@@ -49,7 +38,7 @@ class ViewNavBar extends React.Component {
                                   
                 <Menu.Item
                     name='delete'
-                    active={activeItem === 'delete'}
+                    
                     onClick={this.handleDelete}
                 >
                     Delete
@@ -57,7 +46,6 @@ class ViewNavBar extends React.Component {
                     {this.props.view.noteUserId === this.props.user.id || !this.props.view.noteUserId ? 
                         <Menu.Item
                             name='save'
-                            active={activeItem === 'save'}
                             onClick={this.handleSave}
                             as={Link}
                             to="/select/notes"
@@ -67,7 +55,6 @@ class ViewNavBar extends React.Component {
                     :
                         <Menu.Item
                             name='save'
-                            active={activeItem === 'save'}
                             onClick={this.handleSave}
                             as={Link}
                             to="/select/notes"
@@ -78,7 +65,7 @@ class ViewNavBar extends React.Component {
         </Menu>
       </div>
     )
-}
+ }
 }
 
 const mapStateToProps = (state) => {

@@ -5,6 +5,10 @@ import { Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class NavBar extends React.Component {
+
+    componentDidMount(){
+        this.props.getUser()
+    }
    
     //sets the active collection based on menu item name. Uses store to populate the []
     handleItemClick = (argument) =>{
@@ -13,7 +17,6 @@ class NavBar extends React.Component {
         this.props.clearReferenceOffsetId()
         this.props.clearReferenceHistory()
         this.props.clearNoteHistory()
-
     }
 
     handleNewNoteClick = () =>{

@@ -1,24 +1,14 @@
 import React from 'react'
-import { Dropdown, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
-import {Dimmer, Loader, Checkbox } from 'semantic-ui-react'
-import { Redirect } from 'react-router'
+import {Dimmer, Loader, Dropdown } from 'semantic-ui-react'
 
 
 class ReferenceSearchBar extends React.Component{
 
- 
-
    render(){ 
       
         return(
-         !localStorage.getItem('token') ? 
-         
-         <Redirect to="/"/>
-        
-         :   
-        
                 this.props.user  ? 
                         <div id="select-reference-search-bar">
                                    {this.props.categories ?
@@ -52,10 +42,7 @@ class ReferenceSearchBar extends React.Component{
 const mapStateToProps = (state) => {
    return {
        categories: state.categories,
-       notes: state.notes,
        user: state.currentUser,
-       view: state.view,
-       noteOffsetId: state.noteOffsetId,
        referenceSearchCategoryId: state.referenceSearchCategoryId
     }
 }

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Dropdown, Label } from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
-import {Dimmer, Loader, Checkbox } from 'semantic-ui-react'
-import { Redirect } from 'react-router'
+import {Dimmer, Loader} from 'semantic-ui-react'
 import ReactQuill from 'react-quill';
+
 import ViewNavBar from './ViewNavBar'
 
 
@@ -16,24 +16,10 @@ class ViewContainer extends React.Component{
         addDropDown: []
     }
 
-    handleOnChange = (value) =>{
-    
-        this.setState({
-            text: value
-        })
-    }
-
     componentDidMount(){
-        
-        if(localStorage.getItem('token')){
         this.props.getCategories()
-        this.props.getUser()
         this.props.getAllPublicNotes(this.props.noteOffsetId)
-        }
-      
     }
-
-   
 
     handleOnAdd = (e) =>{
         const newCat = { key: e.target.value, text: e.target.value, value: e.target.value }
@@ -41,16 +27,7 @@ class ViewContainer extends React.Component{
     }
 
    render(){ 
-    //   const optionsArray = this.props.categories.map(category => ({ key: category.id, text: category.name, value: category.id }))
-
-      
         return(
-         !localStorage.getItem('token') ? 
-         
-         <Redirect to="/"/>
-        
-         :   
-        
                 this.props.user  ? 
                         <div id="view-container">
                             <ViewNavBar/>

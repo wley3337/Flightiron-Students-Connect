@@ -7,17 +7,14 @@ import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 
 class SelectionContainer extends React.Component {
+
     componentDidMount(){
-        
-        if(localStorage.getItem('token')){
         this.props.getAllPublicNotes(this.props.noteOffsetId)
-        }
-      
     }
 
     handleItemFocus= (item) =>{
-        this.props.setFocusNote(item)
-       
+        this.props.view.content !== "" ? this.props.updateUser(this.props.view,this.props.user.id) : null
+        this.props.setFocusNote(item)  
     }
 
     handleFilterSelectionOnSearch = () =>{
@@ -42,28 +39,25 @@ class SelectionContainer extends React.Component {
 
 
     render(){
-        // debugger
         return(
             this.props.user ?
                 <div id="selection-container">
+
                     <div
-                        id="select-search-bar"
+                     id="select-search-bar"
                     >
                         <SearchBar/>
                     </div>
-                    
-                    
+        
                     <div 
                     id="select-display-div"
-                    
                     >
-                    
                         { this.handleFilterSelectionOnSearch().map(item => 
-                                <span id="select-display-note-links-span">
+                                <span id="select-display-note-links-span" key={item.note.id}>
                                     <Link 
                                     className="select-display-note-links"
-                                    onClick={()=> this.handleItemFocus(item)}key={item.note.id}
-                                     to="/select/my-page">
+                                    onClick={()=> this.handleItemFocus(item)}
+                                    to="/select/my-page">
                                     <ReactQuill 
                                         value={item.note.note_content.substring(0,60)}
                                         theme="bubble"
@@ -71,9 +65,8 @@ class SelectionContainer extends React.Component {
                                     </Link> 
                                 </span>  
                         )}
-                                                                        
-
                     </div>
+
                     {this.props.ownerFocus !== "myNotes" ? 
                         <div className="last-next-button-container">
                             {this.props.publicNoteHistory.length > 0 ? 
@@ -103,7 +96,6 @@ class SelectionContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         noteOffsetId: state.noteOffsetId,
-        categories: state.categories,
         notes: state.notes,
         user: state.currentUser,
         publicNotes: state.publicNotes,
@@ -111,7 +103,8 @@ const mapStateToProps = (state) => {
         ownerFocus: state.ownerFocus,
         searchCategoryId: state.searchCategoryId,
         moreNotes: state.moreNotes,
-        publicNoteHistory: state.publicNoteHistory
+        publicNoteHistory: state.publicNoteHistory,
+        view: state.view
      }
  }
     

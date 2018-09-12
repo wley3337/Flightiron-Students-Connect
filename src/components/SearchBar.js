@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Label, Checkbox, Dropdown, Input} from 'semantic-ui-react'
+import { Dropdown, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 
@@ -8,9 +8,6 @@ class SearchBar extends React.Component {
     render (){
     return(
         <React.Fragment>
-            
-                
-               
             {this.props.categories ?
                 <span id="select-search-bar-dropdown-container">
                     <Dropdown 
@@ -38,8 +35,6 @@ class SearchBar extends React.Component {
                 placeholder='Search content' 
                 onChange={(e)=> this.props.setSearchTerm(e.target.value)}
                 />
-        
-     
         </React.Fragment>
     )
 }
@@ -48,9 +43,6 @@ class SearchBar extends React.Component {
 const mapStateToProps = (state) => {
    return {
        categories: state.categories,
-       notes: state.notes,
-       user: state.currentUser,
-       view: state.view,
        searchTerm: state.searchTerm,
        searchCategoryId: state.searchCategoryId
     }
