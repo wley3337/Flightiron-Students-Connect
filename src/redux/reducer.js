@@ -112,9 +112,11 @@ const moreNotesReducer = (state = true, action) =>{
     switch(action.type){
 
         case GET_ALL_PUBLIC_NOTES:
+        
         return action.payload.more
 
         case SET_MORE_NOTES:
+        
         return action.payload
 
         default:

@@ -55,9 +55,16 @@ class ReferenceContainer extends React.Component{
     }
 
     handleReferenceAlreadyExists = () =>{
-        
-        setTimeout(this.props.clearExistingReference, 3000)
-        return <p id ="select-reference-container-already-exists">Reference already exists and has been added to your saved references as: <span id="select-reference-container-already-exists-title">{this.props.existingReference[0].title}</span> </p>
+        this.props.setOwnerFocus('myReference')
+        return <p 
+                id ="select-reference-container-already-exists"
+                onClick={this.props.clearExistingReference}
+                >Reference already exists and has been added to your saved references as:
+                <br></br>  
+                <span id="select-reference-container-already-exists-title">{this.props.existingReference[0].title}</span>
+                <br></br> 
+                <span id="select-reference-container-already-exists-click-to-dismiss">click to dismiss</span>
+                </p>
     }
 render(){
     return(

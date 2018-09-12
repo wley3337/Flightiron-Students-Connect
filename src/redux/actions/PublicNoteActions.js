@@ -15,7 +15,7 @@ export const getAllPublicNotes = (id) => (dispatch) =>{
 }
 
 function handleSettingPublicNotes(json, dispatch){
- 
+ console.log("handleSettingPublicNotes:", json)
   if(json["notes"].length > 0){
     
     dispatch(setNoteOffsetId(json["notes"][json["notes"].length-1].note.id))
@@ -42,7 +42,8 @@ export const nextNotes = (id, currentPublicNotesArray) => (dispatch) => {
 }
 
 export const lastNotes = (publicNoteHistory) => (dispatch) =>{
-  dispatch({type: GET_ALL_PUBLIC_NOTES, payload: {notes: publicNoteHistory[publicNoteHistory.length -1]}})
+  console.log("lastNotes(firstDispatch)")
+  dispatch({type: GET_ALL_PUBLIC_NOTES, payload: {notes: publicNoteHistory[publicNoteHistory.length -1], more: true}})
     if(publicNoteHistory.length > 1 ){
 
       const lastId = publicNoteHistory[publicNoteHistory.length -1][publicNoteHistory[publicNoteHistory.length -1].length -1].note.id

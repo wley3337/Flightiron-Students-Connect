@@ -95,7 +95,7 @@ export const nextReferences = (id, currentPublicReferencesArray) => (dispatch) =
 }
 
 export const lastReferences = (publicReferencesHistory) => (dispatch) =>{
-  dispatch({type: SET_REFERENCES, payload: {references: publicReferencesHistory[publicReferencesHistory.length -1]}})
+  dispatch({type: SET_REFERENCES, payload: {references: publicReferencesHistory[publicReferencesHistory.length -1], more: true}})
     if(publicReferencesHistory.length > 1 ){
 
       const lastId = publicReferencesHistory[publicReferencesHistory.length -1][publicReferencesHistory[publicReferencesHistory.length -1].length -1].reference.id
