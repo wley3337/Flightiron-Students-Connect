@@ -15,7 +15,6 @@ export const getAllPublicNotes = (id) => (dispatch) =>{
 }
 
 function handleSettingPublicNotes(json, dispatch){
- console.log("handleSettingPublicNotes:", json)
   if(json["notes"].length > 0){
     
     dispatch(setNoteOffsetId(json["notes"][json["notes"].length-1].note.id))

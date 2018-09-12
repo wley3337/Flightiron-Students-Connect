@@ -24,9 +24,8 @@ class NavBar extends React.PureComponent {
         this.handleItemClick('newNote')
     }
 
-    handleLogOut = (e) =>{ 
-        e.persist()   
-        this.handleItemClick(e)
+    handleLogOut = () =>{  
+        this.handleItemClick('myNotes')
         this.props.logoutUser()
     }
 

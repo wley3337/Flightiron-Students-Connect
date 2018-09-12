@@ -299,6 +299,7 @@ const newReferenceReducer = (state = {title: "", link: "", dropDownValueArray: [
 }
 
 const ownerFocusReducer = (state ="myNotes", action) =>{
+    console.log("setting Focus", action.type)
     switch(action.type){
 
         case SET_OWNER_FOCUS:
