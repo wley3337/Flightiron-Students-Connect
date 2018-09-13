@@ -41,7 +41,7 @@ export const nextNotes = (id, currentPublicNotesArray) => (dispatch) => {
 }
 
 export const lastNotes = (publicNoteHistory) => (dispatch) =>{
-  console.log("lastNotes(firstDispatch)")
+
   dispatch({type: GET_ALL_PUBLIC_NOTES, payload: {notes: publicNoteHistory[publicNoteHistory.length -1], more: true}})
     if(publicNoteHistory.length > 1 ){
 

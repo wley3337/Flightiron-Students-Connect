@@ -17,7 +17,6 @@ class SelectionContainer extends React.PureComponent {
     }
 
     handleFilterSelectionOnSearch = () =>{
-        console.log("handleFilterSelectionOnSearch", this.props.ownerFocus)
         switch(this.props.ownerFocus){
             case "myNotes":
            return this.filterForCatId(this.props.notes).filter(item => item.note.note_content.toLowerCase().includes(this.props.searchTerm))

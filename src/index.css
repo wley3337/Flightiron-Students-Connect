@@ -622,7 +622,12 @@ width: 98%;
 
 
   .compass {
-    background-color: rgba(3,64,120);
+    background-image: url(./Images/compass.jpg);
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    /* background-color: rgba(3,64,120); */
     height: 100vh;
     display: grid;
     grid-template-columns: 2% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 2%;
@@ -630,6 +635,7 @@ width: 98%;
   }
 
   #navbar-container {
+    /* background-color: rgba(3,64,120); */
     height: 100%;
     width: 100%;
     grid-column-start: 2;
@@ -650,6 +656,8 @@ width: 98%;
  /* view container left side */
 
  #view-container {
+  background-color: rgba(3,64,120);
+  border-radius: 1rem;
   margin: .2rem;
   grid-column-start: 3;
   grid-column-end: 11;
@@ -666,18 +674,74 @@ width: 98%;
 /* selection container right side */
 
 #selection-container {
+  background-color: rgba(3,64,120);
+  border-radius: 1rem;
   height: 100%;
   width: 100%;
   grid-column-start: 14;
   grid-column-end: 20;
-  grid-row-start: 1;
+  grid-row-start: 2;
   grid-row-end: 11;
   display: grid;
   grid-template-rows: 8% 12% 70% 10%;
   grid-template-columns: 100%;
 }
 
+#select-search-bar{
+  height:100%;
+  width: 100%;
+  margin-top: .2rem;
+  padding-top: .2rem;
+  padding-right: .1rem;
+  grid-column-start: 1;
+  grid-column-end: 8;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+#select-search-bar-input{
+  height: 100%;
+  width: 98%;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  padding-right: .4rem;
+  margin-right: .5rem;
+}
+#select-search-bar-dropdown-container{
+  width: 98%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: grid;
+  justify-content: center;
+  padding: .1rem;
+  margin-left: .1rem;
+  margin-right: 0rem
+  
+}
+
+#select-display-div{
+  margin: .3rem;
+  margin-top: 3rem;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 8;
+  padding: .5rem;
+  /* margin-left: .3rem; */
+  height: 90%;
+  width: 98%;
+  background-color: rgba(37,206,209, .2);
+  color: #FEFCFB;
+  overflow-y: auto;
+  border-radius: 1rem;
+}
+
+
+
 #select-reference-container{
+  background-color: rgba(3,64,120);
+  border-radius: 1rem;
   height:100%;
   width: 100%;
   /* background-color: rgba(37,206,209, .2); */
@@ -693,8 +757,12 @@ width: 98%;
 
 /* search bar container */
 #select-reference-search-bar{
+  /* background-color: rgba(3,64,120); */
+  border-radius: 1rem;
   height:98%;
   width: 100%;
+  margin-top: .1rem;
+  margin-left:  .4rem;
   margin-bottom: .2rem;
   grid-row-start: 1;
   grid-row-end: 2;
@@ -702,6 +770,8 @@ width: 98%;
   grid-template-columns: 100%;
 }
 #select-reference-search-bar-dropdown-container{
+  /* background-color: rgba(3,64,120); */
+  border-radius: 1rem;
   height:100%;
   width: 98%;
   padding: .2rem;
@@ -712,8 +782,12 @@ width: 98%;
 
 
 
+
+
 /* -----------reference create---------------- */
 #select-reference-create{
+   /* background-color: rgba(3,64,120); */
+
   height:98%;
   width: 100%;
   grid-column-start: 14;
@@ -727,12 +801,19 @@ width: 98%;
 }
 
 #select-reference-create-input-container{
+    background-color: rgba(3,64,120);
+
   height:100%;
-  width: 98%;
-  background-color: rgba(37,206,209,.5);
-  margin: .2rem; 
-  margin-left: .3rem;
-  border-radius: 1rem;
+  width: 100%;
+
+  /* background-color: rgba(37,206,209,.5); */
+  /* margin: .2rem;  */
+  margin-top:  0rem;
+  margin-left: 0rem; 
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   grid-column-start: 14;
   grid-column-end: 20;
   grid-row-start: 3;

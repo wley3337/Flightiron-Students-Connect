@@ -4,7 +4,7 @@ import { updateUser } from './UserActions'
 
 
 export const setFocusNote = (payload) => (dispatch, getState) =>{
-    if(getState().view.content !== ""){dispatch(updateUser(getState().view, getState().currentUser.id))}
+    if(getState().view.content !== "" && getState().view.noteUserId === null){dispatch(updateUser(getState().view, getState().currentUser.id))}
     dispatch ({type: SET_FOCUS_NOTE, payload: payload})
 }
    

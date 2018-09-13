@@ -1,5 +1,4 @@
 import { SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID } from './types'
-import { ROOT_URL } from './index'
 
 
 
