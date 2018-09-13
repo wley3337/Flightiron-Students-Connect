@@ -233,7 +233,7 @@ body {
   grid-row-end: 4;
   grid-column-start: 1;
   grid-column-end: 2;
-  background-color: rgba(37,206,209, .8);
+  background-color: rgba(37,206,209, .2);
   color: #FEFCFB;
   border-radius: 1rem;
   display: grid;
@@ -251,6 +251,7 @@ body {
   border: none;
 }
 .ql-toolbar.ql-snow {
+  background-color: rgba(37,206,209, .6);
   border-radius: 1rem;
 }
 
@@ -313,6 +314,7 @@ span > #text-bg-stnd {
 }
 
 #select-search-bar-button{
+  font-family: 'Cinzel', sans-serif;
   height: 100%;
   width: 100%;
   background-color: rgba(37,206,209, .2);
@@ -455,6 +457,7 @@ width: 98%;
   text-align: center;
 } 
 #select-reference-create-button{
+  font-family: 'Cinzel', sans-serif;
   grid-row-start: 7;
   grid-row-end: 8;
   border-radius: 1rem;
@@ -505,6 +508,7 @@ width: 98%;
   grid-column-end: 2;
 }
 #select-reference-search-bar-button{
+  font-family: 'Cinzel', sans-serif;
   grid-column-start: 2;
   grid-column-end: 3;
   margin: .1rem;
@@ -533,6 +537,7 @@ width: 98%;
 }
 
 #select-reference-links button{
+  font-family: 'Cinzel', sans-serif;
   grid-column-start: 2;
   grid-column-end: 3;
   margin: .2rem;
@@ -592,6 +597,7 @@ width: 98%;
 }
 
 .last-next-button-container .last{
+  font-family: 'Cinzel', sans-serif;
   grid-column-start: 2;
   grid-column-end: 3;
   align-self: center;
@@ -605,6 +611,7 @@ width: 98%;
 }
 
 .last-next-button-container .next{
+  font-family: 'Cinzel', sans-serif;
   grid-column-start: 4;
   grid-column-end: 5;
   align-self: center;
