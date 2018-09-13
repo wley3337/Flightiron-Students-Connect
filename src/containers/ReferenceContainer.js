@@ -94,13 +94,13 @@ class ReferenceContainer extends React.PureComponent{
                                     <button
                                         onClick={()=> this.props.lastReferences(this.props.referenceHistory)}
                                         className="last"
-                                    >Last 300</button> 
+                                    >Last 50</button> 
                                 : null}
                                 {this.props.moreReferences ? 
                                     <button 
                                         className="next"
                                         onClick={()=> this.props.nextReferences(this.props.referenceOffsetId,this.props.publicReferences)}
-                                    >Next 300</button> 
+                                    >Next 50</button> 
                                 : null}
                             </div>
                         : 

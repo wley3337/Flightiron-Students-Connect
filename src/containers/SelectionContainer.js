@@ -19,10 +19,10 @@ class SelectionContainer extends React.PureComponent {
     handleFilterSelectionOnSearch = () =>{
         switch(this.props.ownerFocus){
             case "myNotes":
-           return this.filterForCatId(this.props.notes).filter(item => item.note.note_content.toLowerCase().includes(this.props.searchTerm))
+           return this.filterForCatId(this.props.notes).filter(item => item.note.note_content.toLowerCase().includes(this.props.searchTerm.toLowerCase()))
 
             case "publicNotes":
-            return this.filterForCatId(this.props.publicNotes).filter(item => item.note.note_content.toLowerCase().includes(this.props.searchTerm))
+            return this.filterForCatId(this.props.publicNotes).filter(item => item.note.note_content.toLowerCase().includes(this.props.searchTerm.toLowerCase()))
     
             default:
            return []  
@@ -72,13 +72,13 @@ class SelectionContainer extends React.PureComponent {
                                 <button
                                     onClick={()=> this.props.lastNotes(this.props.publicNoteHistory)}
                                     className="last"
-                                >Last 300</button> 
+                                >Last 50</button> 
                             : null}
                             {this.props.moreNotes ? 
                                 <button 
                                     className="next"
                                     onClick={()=> this.props.nextNotes(this.props.noteOffsetId,this.props.publicNotes)}
-                                >Next 300</button> 
+                                >Next 50</button> 
                             : null}
                         </div>
                     : 
