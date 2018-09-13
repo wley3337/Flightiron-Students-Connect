@@ -622,8 +622,8 @@ width: 98%;
 
 
   .compass {
-    background-image: url(./Images/compass.jpg);
-  background-position: center;
+    background-image: url(./Images/desktopview2.jpg);
+  /* background-position: center; */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
