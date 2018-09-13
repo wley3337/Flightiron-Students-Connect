@@ -88,6 +88,7 @@ export const removePublicReferenceHistory = () =>({type: REMOVE_REFERENCE_HISTOR
 
 
 export const nextReferences = (id, currentPublicReferencesArray) => (dispatch) => {
+    console.log(id)
     //add reference to history
     dispatch(addPublicReferenceHistory(currentPublicReferencesArray))
     //fetch reference based on starting reference id
@@ -102,7 +103,7 @@ export const lastReferences = (publicReferencesHistory) => (dispatch) =>{
       dispatch(setReferenceOffsetId(lastId))
       dispatch({type: SET_MORE_REFERENCES, payload: true})
     }else{
-      dispatch(setReferenceOffsetId(0))
+      dispatch(setReferenceOffsetId(publicReferencesHistory[publicReferencesHistory.length -1]))
       dispatch({type: SET_MORE_REFERENCES, payload: true})
     }
   
