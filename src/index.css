@@ -1,8 +1,14 @@
-/* @import url('https://fonts.googleapis.com/css?family=EB+Garamond');
-font-family: 'EB Garamond' */
+
 
 @import url('https://fonts.googleapis.com/css?family=Cinzel');
 /* font-family: 'Cinzel' */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+
+
+
+
 
 body {
   margin: 0;
@@ -248,8 +254,27 @@ body {
  
 }
 .ql-container.ql-snow{
+
+  font-family: 'Lato', sans-serif;
+  font-size: 110%;
+  letter-spacing: .1rem;
+  word-spacing: .2rem;
+
+
+  
+
+
+
+
   border: none;
 }
+.ql-container.ql-bubble{
+  font-family: 'Lato', sans-serif;
+  font-size: 102%;
+  letter-spacing: .1rem;
+  word-spacing: .2rem;
+}
+
 .ql-toolbar.ql-snow {
   background-color: rgba(37,206,209, .6);
   border-radius: 1rem;
