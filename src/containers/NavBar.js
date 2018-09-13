@@ -13,8 +13,9 @@ class NavBar extends React.PureComponent {
     //sets the active collection based on menu item name. Uses store to populate the []
     handleItemClick = (argument) =>{
         this.props.setOwnerFocus(argument)
-        this.props.clearNoteOffsetId()
-        this.props.clearReferenceOffsetId()
+
+        // this.props.clearNoteOffsetId()
+        // this.props.clearReferenceOffsetId()
         this.props.clearReferenceHistory()
         this.props.clearNoteHistory()
     }
@@ -125,7 +126,9 @@ class NavBar extends React.PureComponent {
 const mapStateToProps = (state) => {
     return {
         user: state.currentUser,
-        ownerFocus: state.ownerFocus
+        ownerFocus: state.ownerFocus,
+        noteOffsetId: state.notesOffsetId,
+    referenceOffsetId: state.referenceOffsetId
      }
  }
     
