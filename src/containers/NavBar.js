@@ -15,7 +15,7 @@ class NavBar extends React.PureComponent {
         this.props.setOwnerFocus(argument)
 
         // this.props.clearNoteOffsetId()
-        // this.props.clearReferenceOffsetId()
+        this.props.clearReferenceOffsetId()
         this.props.clearReferenceHistory()
         this.props.clearNoteHistory()
     }
