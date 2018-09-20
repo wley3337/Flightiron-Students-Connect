@@ -26,9 +26,9 @@ Flatiron Students Connect is a program designed as place that students can share
 
 
 ## Full Screen:
-![Full Screen Wire Frame Login image](./public/FullScreenWireframe.png)
+![Full Screen Wireframe Login image](./public/FullScreenWireframe.png)
 
-![Full Screen Wire Frame Content image](./public/FullScreenWireframe2.png)
+![Full Screen Wireframe Content image](./public/FullScreenWireframe2.png)
 
 
 
