@@ -15,20 +15,20 @@ Flatiron Students Connect is a program designed as place that students can share
 
 
 
-# Wire Frames:
+# Wireframes:
 
 ## Mobile:
-![Mobile Wire Frame Login Image](./public/MobileWireFrame.png) 
+![Mobile Wireframe Login Image](./public/MobileWireframe.png) 
 
-![Mobile Wire Frame Content Image](./public/MobileWireFrame2.png)
+![Mobile Wireframe Content Image](./public/MobileWireframe2.png)
 
 
 
 
 ## Full Screen:
-![Full Screen Wire Frame Login image](./public/FullScreenWireFrame.png)
+![Full Screen Wire Frame Login image](./public/FullScreenWireframe.png)
 
-![Full Screen Wire Frame Content image](./public/FullScreenWireFrame2.png)
+![Full Screen Wire Frame Content image](./public/FullScreenWireframe2.png)
 
 
 
