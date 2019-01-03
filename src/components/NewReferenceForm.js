@@ -12,6 +12,7 @@ class NewReferenceForm extends React.PureComponent{
 
 handleCreateNewReference = () =>{
     const {title, link, dropDownValueArray} = this.props.newReference
+    //checks to see if link has a http reference and that it has a title before saving
     if (link.slice(0,4) === "http" && title ){
         const referenceObj = {
             title: title,
@@ -25,11 +26,11 @@ handleCreateNewReference = () =>{
         this.setState({error: {title: null, link: null}, redirect: true})
         
     }else{
-        // set local state error to say all urls must beging with https, must have titles that can not be blank
+        // set local state error to say all urls must beging with http, must have titles that can not be blank
         this.setState({
             error: {
                 title: title ? null: "Title can not be blank"
-                , link: link.slice(0,5) === "https" ? null : (link ? "Urls must start with https" : "Link can not be blank")
+                , link: link.slice(0,4) === "http" ? null : (link ? "Urls must start with http" : "Link can not be blank")
             }
         })
         

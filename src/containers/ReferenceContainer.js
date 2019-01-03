@@ -114,14 +114,14 @@ class ReferenceContainer extends React.PureComponent{
 
 const mapPropsToState = (state) =>{
     return{
-        ownerFocus: state.ownerFocus,
-        references: state.references,
-        referenceOffsetId: state.referenceOffsetId,
-        publicReferences: state.publicReferences,
-        referenceSearchCategoryId: state.referenceSearchCategoryId,
-        existingReference: state.existingReference,
-        referenceHistory: state.referenceHistory,
-        moreReferences: state.moreReferences
+        ownerFocus: state.ownerFocus, //used for setting focus in menues
+        references: state.references, // only seems to be used to see if a reference exists **this could be moved into a thunk action
+        referenceOffsetId: state.referenceOffsetId,//only used as dispatch reference ** This could be moved into a thunk action- being added as argument for nextReferences()
+        publicReferences: state.publicReferences, //used as a set for filtering displayed references based off of a filter search
+        referenceSearchCategoryId: state.referenceSearchCategoryId, //used for filtering references by category
+        existingReference: state.existingReference, //used to display the existing reference to the user 
+        referenceHistory: state.referenceHistory,//used to display if there is a back button and to load that array as the previous set of references
+        moreReferences: state.moreReferences //used as a boolean value to display next button
     }
 }
 

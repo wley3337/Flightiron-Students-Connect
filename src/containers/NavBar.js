@@ -124,8 +124,8 @@ class NavBar extends React.PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.currentUser,
-        ownerFocus: state.ownerFocus
+        user: state.currentUser,//only used as a render check
+        ownerFocus: state.ownerFocus //used as a state check for highlight on menu bar
      }
  }
     
