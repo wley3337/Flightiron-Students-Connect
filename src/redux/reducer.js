@@ -4,7 +4,7 @@ import { LOADING, SET_CURRENT_USER, LOGOUT, DELETE_NOTE, SET_FOCUS_NOTE, UPDATE_
          ADD_CATEGORY, GET_ALL_PUBLIC_NOTES, SET_FLASH_MESSAGE, DELETE_FLASH_MESSAGE, 
          SET_SEARCH_TERM, SET_SEARCH_CATEGORY_ID, CLEAR_SEARCH_CATEGORY_ID, SET_OWNER_FOCUS, SET_REFERENCE_SEARCH_CATEGORY_ID, CLEAR_REFERENCE_SEARCH_CATEGORY_ID, REFERENCE_SEARCH_RESULTS, SET_REFERENCE_TITLE, SET_REFERENCE_LINK, UPDATE_REFERENCE_CATEGORIES, CLEAR_NEW_REFERENCE, SET_REFERENCES, UPDATE_REFERENCES, SET_EXISTING_REFERENCE,CLEAR_EXISTING_REFERENCE, SET_NOTE_OFFSET_ID, CLEAR_NOTE_OFFSET_ID, ADD_NOTE_HISTORY, REMOVE_NOTE_HISTORY, SET_MORE_NOTES, ADD_REFERENCE_HISTORY, REMOVE_REFERENCE_HISTORY, SET_REFERENCE_OFFSET_ID, CLEAR_REFERENCE_OFFSET_ID, SET_MORE_REFERENCES, CLEAR_REFERENCE_HISTORY, CLEAR_NOTE_HISTORY } from './actions/types'
 
-const currentUserReducer =( state = null, action ) =>{
+export const currentUserReducer =( state = null, action ) =>{
 
     switch(action.type){
         case LOADING:
@@ -23,7 +23,7 @@ const currentUserReducer =( state = null, action ) =>{
 }
         
 
-const viewReducer = (state = {noteId: null, content: "", dropDownValueArray: [], public: false, noteUserId: null, newCategory: ""}, action) =>{
+export const viewReducer = (state = {noteId: null, content: "", dropDownValueArray: [], public: false, noteUserId: null, newCategory: ""}, action) =>{
     // {note: {noteId: null, note_content: "", public_note: false, user.id: null}, categories: []}
     switch(action.type){
 
@@ -50,7 +50,7 @@ const viewReducer = (state = {noteId: null, content: "", dropDownValueArray: [],
 
 }
 
-const notesReducer = (state = [], action) =>{
+export const notesReducer = (state = [], action) =>{
     switch(action.type){
 
         case SET_CURRENT_USER:
@@ -64,7 +64,7 @@ const notesReducer = (state = [], action) =>{
     }
 }
 
-const categoryReducer = (state =[], action) =>{
+export const categoryReducer = (state =[], action) =>{
     switch(action.type){
         
         case GET_ALL_CATEGORIES:
@@ -80,7 +80,7 @@ const categoryReducer = (state =[], action) =>{
 
 
 
-const publicNoteReducer = (state =[], action) =>{
+export const publicNoteReducer = (state =[], action) =>{
     switch(action.type){
 
         case GET_ALL_PUBLIC_NOTES:
@@ -91,7 +91,7 @@ const publicNoteReducer = (state =[], action) =>{
     }
 }
 
-const publicNoteHistoryReducer = (state =[], action) =>{
+export const publicNoteHistoryReducer = (state =[], action) =>{
     switch(action.type){
         case ADD_NOTE_HISTORY:
         return [...state, action.payload]
@@ -108,7 +108,7 @@ const publicNoteHistoryReducer = (state =[], action) =>{
     }
 }
 
-const moreNotesReducer = (state = true, action) =>{
+export const moreNotesReducer = (state = true, action) =>{
     switch(action.type){
 
         case GET_ALL_PUBLIC_NOTES:
@@ -125,7 +125,7 @@ const moreNotesReducer = (state = true, action) =>{
 
 }
 
-const flashMessageReducer =(state=[], action) =>{
+export const flashMessageReducer =(state=[], action) =>{
     switch(action.type){
         
         case SET_FLASH_MESSAGE:
@@ -139,7 +139,7 @@ const flashMessageReducer =(state=[], action) =>{
     }
 }
 
-const searchTermReducer = (state ="", action) =>{
+export const searchTermReducer = (state ="", action) =>{
     switch(action.type){
         case SET_SEARCH_TERM:
         return action.payload
@@ -148,7 +148,7 @@ const searchTermReducer = (state ="", action) =>{
     }
 }
 
-const notesOffsetIdReducer =(state = 0, action)=>{
+export const notesOffsetIdReducer =(state = 0, action)=>{
     switch(action.type){
         case SET_NOTE_OFFSET_ID:
         return action.payload
@@ -161,7 +161,7 @@ const notesOffsetIdReducer =(state = 0, action)=>{
     }
 }
 
-const referenceOffsetIdReducer =(state = 0, action)=>{
+export const referenceOffsetIdReducer =(state = 0, action)=>{
     switch(action.type){
         case SET_REFERENCE_OFFSET_ID:
         return action.payload
@@ -174,7 +174,7 @@ const referenceOffsetIdReducer =(state = 0, action)=>{
     }
 }
 
-const referenceHistoryReducer = (state =[], action) =>{
+export const referenceHistoryReducer = (state =[], action) =>{
     switch(action.type){
         case ADD_REFERENCE_HISTORY:
         return [...state, action.payload]
@@ -192,7 +192,7 @@ const referenceHistoryReducer = (state =[], action) =>{
 }
 
 //this is for notes
-const searchCategoryIdReducer = (state="", action) => {
+export const searchCategoryIdReducer = (state="", action) => {
     switch(action.type){
         
         case SET_SEARCH_CATEGORY_ID:
@@ -206,7 +206,7 @@ const searchCategoryIdReducer = (state="", action) => {
     }
 }
 
-const referenceSearchCategoryIdReducer = (state="", action) => {
+export const referenceSearchCategoryIdReducer = (state="", action) => {
     switch(action.type){
         
         case SET_REFERENCE_SEARCH_CATEGORY_ID:
@@ -221,7 +221,7 @@ const referenceSearchCategoryIdReducer = (state="", action) => {
 }
 
 
-const moreReferencesReducer = (state = false, action) =>{
+export const moreReferencesReducer = (state = false, action) =>{
     switch(action.type){
 
         case SET_REFERENCES:
@@ -239,7 +239,7 @@ const moreReferencesReducer = (state = false, action) =>{
 
 }
 //user references
-const referencesReducer = (state = [], action) =>{
+export const referencesReducer = (state = [], action) =>{
     switch(action.type){
 
         case SET_CURRENT_USER:
@@ -251,7 +251,7 @@ const referencesReducer = (state = [], action) =>{
 }
 
 //public references
-const publicReferencesReducer = (state = [], action) =>{
+export const publicReferencesReducer = (state = [], action) =>{
     switch(action.type){
 
         case SET_REFERENCES:
@@ -265,7 +265,7 @@ const publicReferencesReducer = (state = [], action) =>{
     }
 }
 
-const referenceSearchResultsIdReducer = (state=[], action) => {
+export const referenceSearchResultsIdReducer = (state=[], action) => {
     switch(action.type){
         
         case REFERENCE_SEARCH_RESULTS:
@@ -276,7 +276,7 @@ const referenceSearchResultsIdReducer = (state=[], action) => {
     }
 }
 
-const newReferenceReducer = (state = {title: "", link: "", dropDownValueArray: []}, action) =>{
+export const newReferenceReducer = (state = {title: "", link: "", dropDownValueArray: []}, action) =>{
 
     switch(action.type){
 
@@ -298,7 +298,7 @@ const newReferenceReducer = (state = {title: "", link: "", dropDownValueArray: [
 
 }
 
-const ownerFocusReducer = (state ="myNotes", action) =>{
+export const ownerFocusReducer = (state ="myNotes", action) =>{
     
     switch(action.type){
 
@@ -310,7 +310,7 @@ const ownerFocusReducer = (state ="myNotes", action) =>{
     }
 }
 
-const existingReferenceReducer =(state = [], action) =>{
+export const existingReferenceReducer =(state = [], action) =>{
     switch(action.type){
         case SET_EXISTING_REFERENCE:
         return action.payload

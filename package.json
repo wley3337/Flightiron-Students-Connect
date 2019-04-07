@@ -10,7 +10,7 @@
     "react-responsive": "^5.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.3.3",
@@ -26,5 +26,10 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "enzyme-to-json": "^3.3.5"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
