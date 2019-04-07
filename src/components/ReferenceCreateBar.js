@@ -38,6 +38,7 @@ class ReferenceCreateBar extends React.PureComponent{
                             allowAdditions
                             onAddItem={this.handleOnAdd}
                             options= {this.props.categories}
+                            //this uses the prop to update categories for new user created categories from notes
                             value={this.props.newReference.dropDownValueArray}
                             onChange={(e,value) => this.props.updateReferenceCategories(value.value)}
                         />
@@ -61,9 +62,9 @@ class ReferenceCreateBar extends React.PureComponent{
 
 const mapStateToProps = (state) => {
    return {
-       categories: state.categories,
-       user: state.currentUser,
-       newReference: state.newReference
+       categories: state.categories,//needed and rendered
+       user: state.currentUser, //only uses this to know if it can load categories. Is there a way around this?
+       newReference: state.newReference//used to update categories dynamicly accross site.
     }
 }
 

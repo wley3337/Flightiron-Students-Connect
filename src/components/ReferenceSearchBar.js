@@ -41,9 +41,9 @@ class ReferenceSearchBar extends React.PureComponent{
 
 const mapStateToProps = (state) => {
    return {
-       categories: state.categories,
-       user: state.currentUser,
-       referenceSearchCategoryId: state.referenceSearchCategoryId
+       categories: state.categories, //used for displaying of categories 
+       user: state.currentUser,//only uses as a condition to render
+       referenceSearchCategoryId: state.referenceSearchCategoryId //used to set reference category for filter
     }
 }
 
