@@ -34,7 +34,7 @@ Flatiron Students Connect is a program designed as place that students can share
 
 # Frame Works and Libraries
 
-### Front End:
+### Frontend:
 
 * React
 * Redux
@@ -43,14 +43,14 @@ Flatiron Students Connect is a program designed as place that students can share
 * Semantic-Ui-React
 * React-Router
 
-### Back End:
+### Backend:
 
 * Rails
 * Postgres
 * Jwt (Token Auth)
 * Figaro (ENV key manager) 
 
-# Rails Back End 
+# Rails Backend 
 
 <a href="https://github.com/wley3337/modfivebackend">Rails Backend Repo</a>
 

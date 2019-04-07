@@ -42,9 +42,9 @@ class SearchBar extends React.PureComponent {
 
 const mapStateToProps = (state) => {
    return {
-       categories: state.categories,
-       searchTerm: state.searchTerm,
-       searchCategoryId: state.searchCategoryId
+       categories: state.categories, //displayes category list
+       searchTerm: state.searchTerm, //sets input value
+       searchCategoryId: state.searchCategoryId //sets category filter id
     }
 }
 

@@ -113,7 +113,7 @@ class CreateUserForm extends Component {
 }
 const mapStateToProps= (state) =>{
     return {
-        currentUser: state.currentUser,
+        currentUser: state.currentUser,// doesn't need to know this
         flashMessage: state.flashMessage
     }
 }
