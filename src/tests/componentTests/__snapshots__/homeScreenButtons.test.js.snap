@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Screen Component Test:  renders consistantly 1`] = `
+<Link
+  className="ui inverted button"
+  id="login"
+  onClick={[Function]}
+  replace={false}
+  role="button"
+  to="/login"
+/>
+`;
